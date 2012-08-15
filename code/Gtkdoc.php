@@ -207,17 +207,26 @@ class Gtkdoc extends Page {
     }
 
     /**
+     * Returns the parent node of this page. The returned
+     * node is a reference to the original one, not a copy.
+     *
+     * @return Array The parent node of this page or null
+     *               if this is the root node.
+     */
+    public function &getParentNode() {
+        $node = &$this->getNode();
+        return $node['parent'];
+    }
+
+    /**
      * Overrides SiteTree::parent() to return the parent Gtkdoc model
      * without accessing the database.
      *
      * @return SiteTree Parent of this page.
      */
     public function getParent() {
-        $node = &$this->getNode();
-        if (! isset($node['parent'])) {
-            return parent::getParent();
-        }
-        return $this->getSectionPage($node['parent']);
+        $parent_node = &$this->getParentNode();
+        return isset($parent_node) ? $this->getSectionPage($parent_node) : parent::getParent();
     }
 
     /**
@@ -248,6 +257,11 @@ class Gtkdoc extends Page {
      * @return string  Raw HTML text.
      */
     public function getContent() {
+        if (! $this->getParent()) {
+            // This is the root node: return the content set in the CMS
+            return $this->getField('Content');
+        }
+
         $doc = new DOMDocument();
         $doc->strictErrorChecking = false;
         @$doc->loadHTMLFile($this->_getAbsoluteLink($this->getNode()));
