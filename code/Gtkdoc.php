@@ -82,8 +82,8 @@ class Gtkdoc extends Page {
         $result->setAttribute('class', 'gtkdoc');
 
         // Set the metadescription of this page, if found
-        $element = $xpath->query('//div[@class="refnamediv"]//h2/../p')->item(0);
-        $element and $this->setField('MetaDescription', $element->nodeValue);
+        $element = $xpath->query('//div[@class="refnamediv"]//h2/../p|//h3')->item(0);
+        $element and $this->setField('MetaDescription', trim($element->nodeValue));
 
         // Import valid elements into $result
         foreach ($xpath->query('body/div[@class="book" or @class="part" or @class="chapter" or @class="refentry" or @class="index"]') as $element) {
@@ -94,7 +94,7 @@ class Gtkdoc extends Page {
         // $elements array is used to avoid modifying the DOM
         // while iterating over it
         $elements = array();
-        foreach ($xpath->query('.//div[@class="titlepage" or @class="refnamediv"]', $result) as $element) {
+        foreach ($xpath->query('(.//div[@class="titlepage"])[1]|.//div[@class="refnamediv"]', $result) as $element) {
             $elements[] = $element;
         }
         foreach ($elements as $element) {
@@ -262,9 +262,16 @@ class Gtkdoc extends Page {
             return $this->getField('Content');
         }
 
+        $file = $this->_getAbsoluteLink($this->getNode());
+        $data = file_get_contents($file);
+
+        // Strip GTKDOCLINK tags: much easier to do with regex
+        // than using DOM APIs.
+        $data = preg_replace('/<?GTKDOCLINK.*?>/', '', $data);
+
         $doc = new DOMDocument();
         $doc->strictErrorChecking = false;
-        @$doc->loadHTMLFile($this->_getAbsoluteLink($this->getNode()));
+        @$doc->loadHTML($data);
         return $this->_getContentFromDOM($doc);
     }
 }
