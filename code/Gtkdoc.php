@@ -86,7 +86,7 @@ class Gtkdoc extends Page {
         $element and $this->setField('MetaDescription', trim($element->nodeValue));
 
         // Import valid elements into $result
-        foreach ($xpath->query('body/div[@class="book" or @class="part" or @class="chapter" or @class="refentry" or @class="index"]') as $element) {
+        foreach ($xpath->query('body/div[@class="book" or @class="part" or @class="chapter" or @class="refentry" or @class="index" or @class="glossary"]') as $element) {
             $result->appendChild($element);
         }
 
