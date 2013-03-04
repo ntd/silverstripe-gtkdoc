@@ -90,6 +90,12 @@ class Gtkdoc extends Page {
             $result->appendChild($element);
         }
 
+        // No valid elements are found: fallback to the whole content of body
+        if (! $result->hasChildNodes()) {
+            foreach ($xpath->query('body/*') as $element)
+                $result->appendChild($element);
+        }
+
         // Remove invalid elements from the result: the helper
         // $elements array is used to avoid modifying the DOM
         // while iterating over it
