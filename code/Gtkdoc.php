@@ -31,6 +31,7 @@ class Gtkdoc extends Page {
 
             $toc = array(
                 '' => array(
+                    'ID'   => $this->ID,
                     'name' => $this->Title,
                     'link' => ''
             ));
@@ -181,7 +182,7 @@ class Gtkdoc extends Page {
 
         if (! isset($node['page'])) {
             $page = $this->duplicate(false);
-            $page->setField('ID', -1);
+            $page->setField('ID', $link);
             $page->setField('Title', $node['name']);
             $page->setField('GtkdocLink', $link);
             $page->node = &$node;
@@ -232,6 +233,12 @@ class Gtkdoc extends Page {
      */
     public function getParent() {
         $parent_node = &$this->getParentNode();
+
+        if (isset($parent_node['ID'])) {
+            $id = $parent_node['ID'];
+            return DataObject::get_one('SiteTree', '"SiteTree"."ID" = ' . $id);
+        }
+
         return isset($parent_node) ? $this->getSectionPage($parent_node) : parent::getParent();
     }
 
