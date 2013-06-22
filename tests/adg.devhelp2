@@ -1,0 +1,853 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE book PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<book xmlns="http://www.devhelp.net/book" title="adg-1 reference manual" link="index.html" author="" name="adg" version="2" language="c">
+  <chapters>
+    <sub name="Introduction" link="Introduction.html">
+      <sub name="ADG overview" link="README.html"></sub>
+      <sub name="News archive" link="NEWS.html"></sub>
+      <sub name="Planned features" link="TODO.html"></sub>
+      <sub name="How to contribute" link="CONTRIBUTING.html"></sub>
+      <sub name="Code contributions" link="HACKING.html"></sub>
+    </sub>
+    <sub name="ADG core reference" link="Core.html">
+      <sub name="Utilities" link="utilities.html"></sub>
+      <sub name="Standard enumerations" link="enumerations.html"></sub>
+      <sub name="GBoxed types" link="Core-gboxed.html">
+        <sub name="AdgPoint" link="AdgPoint.html"></sub>
+        <sub name="Matrix" link="Matrix.html"></sub>
+      </sub>
+    </sub>
+    <sub name="Defining the model" link="Defining.html">
+      <sub name="AdgModel" link="AdgModel.html"></sub>
+      <sub name="AdgTrail" link="AdgTrail.html"></sub>
+      <sub name="AdgPath" link="AdgPath.html"></sub>
+      <sub name="AdgEdges" link="AdgEdges.html"></sub>
+    </sub>
+    <sub name="Populating the canvas" link="Populating.html">
+      <sub name="AdgCanvas" link="AdgCanvas.html"></sub>
+      <sub name="AdgEntity" link="AdgEntity.html"></sub>
+      <sub name="AdgContainer" link="AdgContainer.html"></sub>
+      <sub name="AdgAlignment" link="AdgAlignment.html"></sub>
+      <sub name="AdgTextual" link="AdgTextual.html"></sub>
+      <sub name="Stock entities" link="Populating-stock.html">
+        <sub name="AdgStroke" link="AdgStroke.html"></sub>
+        <sub name="AdgHatch" link="AdgHatch.html"></sub>
+        <sub name="AdgToyText" link="AdgToyText.html"></sub>
+        <sub name="AdgText" link="AdgText.html"></sub>
+        <sub name="AdgTable" link="AdgTable.html"></sub>
+        <sub name="AdgTableRow" link="AdgTableRow.html"></sub>
+        <sub name="AdgTableCell" link="AdgTableCell.html"></sub>
+      </sub>
+      <sub name="Special entities" link="Populating-special.html">
+        <sub name="AdgLogo" link="AdgLogo.html"></sub>
+        <sub name="AdgProjection" link="AdgProjection.html"></sub>
+        <sub name="AdgTitleBlock" link="AdgTitleBlock.html"></sub>
+      </sub>
+      <sub name="Quoting" link="Populating-quoting.html">
+        <sub name="AdgDim" link="AdgDim.html"></sub>
+        <sub name="AdgLDim" link="AdgLDim.html"></sub>
+        <sub name="AdgADim" link="AdgADim.html"></sub>
+        <sub name="AdgRDim" link="AdgRDim.html"></sub>
+      </sub>
+      <sub name="Markers" link="Populating-marker.html">
+        <sub name="AdgMarker" link="AdgMarker.html"></sub>
+        <sub name="AdgArrow" link="AdgArrow.html"></sub>
+      </sub>
+    </sub>
+    <sub name="The rendering process" link="Rendering.html">
+      <sub name="AdgDress" link="Dresses.html"></sub>
+      <sub name="AdgParamDress" link="AdgParamDress.html"></sub>
+      <sub name="AdgDash" link="AdgDash.html"></sub>
+      <sub name="Style classes" link="Rendering-style.html">
+        <sub name="AdgStyle" link="AdgStyle.html"></sub>
+        <sub name="AdgColorStyle" link="AdgColorStyle.html"></sub>
+        <sub name="AdgLineStyle" link="AdgLineStyle.html"></sub>
+        <sub name="AdgFillStyle" link="AdgFillStyle.html"></sub>
+        <sub name="AdgRuledFill" link="AdgRuledFill.html"></sub>
+        <sub name="AdgFontStyle" link="AdgFontStyle.html"></sub>
+        <sub name="AdgPangoStyle" link="AdgPangoStyle.html"></sub>
+        <sub name="AdgDimStyle" link="AdgDimStyle.html"></sub>
+        <sub name="AdgTableStyle" link="AdgTableStyle.html"></sub>
+      </sub>
+    </sub>
+    <sub name="GTK+ support" link="gtk.html">
+      <sub name="GTK+ utilities" link="gtk-utilities.html"></sub>
+      <sub name="AdgGtkArea" link="AdgGtkArea.html"></sub>
+      <sub name="AdgGtkLayout" link="AdgGtkLayout.html"></sub>
+    </sub>
+    <sub name="Object Hierarchy" link="Hierarchy.html"></sub>
+    <sub name="Index" link="Index.html"></sub>
+    <sub name="Annotation Glossary" link="annotation-glossary.html"></sub>
+  </chapters>
+  <functions>
+    <keyword type="macro" name="ADG_DIR_DOWN" link="utilities.html#ADG-DIR-DOWN:CAPS" since="1.0"></keyword>
+    <keyword type="macro" name="ADG_DIR_LEFT" link="utilities.html#ADG-DIR-LEFT:CAPS" since="1.0"></keyword>
+    <keyword type="macro" name="ADG_DIR_RIGHT" link="utilities.html#ADG-DIR-RIGHT:CAPS" since="1.0"></keyword>
+    <keyword type="macro" name="ADG_DIR_UP" link="utilities.html#ADG-DIR-UP:CAPS" since="1.0"></keyword>
+    <keyword type="macro" name="ADG_UTF8_DEGREE" link="utilities.html#ADG-UTF8-DEGREE:CAPS" since="1.0"></keyword>
+    <keyword type="macro" name="ADG_UTF8_DIAMETER" link="utilities.html#ADG-UTF8-DIAMETER:CAPS" since="1.0"></keyword>
+    <keyword type="function" name="adg_find_file ()" link="utilities.html#adg-find-file" since="1.0"></keyword>
+    <keyword type="function" name="adg_is_boolean_value ()" link="utilities.html#adg-is-boolean-value" since="1.0"></keyword>
+    <keyword type="function" name="adg_is_enum_value ()" link="utilities.html#adg-is-enum-value" since="1.0"></keyword>
+    <keyword type="function" name="adg_is_string_empty ()" link="utilities.html#adg-is-string-empty" since="1.0"></keyword>
+    <keyword type="function" name="adg_scale_factor ()" link="utilities.html#adg-scale-factor"></keyword>
+    <keyword type="function" name="adg_string_replace ()" link="utilities.html#adg-string-replace" since="1.0"></keyword>
+    <keyword type="function" name="g_strcmp0 ()" link="utilities.html#g-strcmp0" since="1.0"></keyword>
+    <keyword type="enum" name="enum AdgDress" link="enumerations.html#AdgDress" since="1.0"></keyword>
+    <keyword type="enum" name="enum AdgMix" link="enumerations.html#AdgMix" since="1.0"></keyword>
+    <keyword type="enum" name="enum AdgProjectionScheme" link="enumerations.html#AdgProjectionScheme" since="1.0"></keyword>
+    <keyword type="enum" name="enum AdgThreeState" link="enumerations.html#AdgThreeState" since="1.0"></keyword>
+    <keyword type="enum" name="enum AdgTransformMode" link="enumerations.html#AdgTransformMode" since="1.0"></keyword>
+    <keyword type="function" name="adg_point_copy ()" link="AdgPoint.html#adg-point-copy" since="1.0"></keyword>
+    <keyword type="function" name="adg_point_destroy ()" link="AdgPoint.html#adg-point-destroy" since="1.0"></keyword>
+    <keyword type="function" name="adg_point_dup ()" link="AdgPoint.html#adg-point-dup" since="1.0"></keyword>
+    <keyword type="function" name="adg_point_equal ()" link="AdgPoint.html#adg-point-equal" since="1.0"></keyword>
+    <keyword type="function" name="adg_point_get_model ()" link="AdgPoint.html#adg-point-get-model" since="1.0"></keyword>
+    <keyword type="function" name="adg_point_get_name ()" link="AdgPoint.html#adg-point-get-name" since="1.0"></keyword>
+    <keyword type="function" name="adg_point_get_pair ()" link="AdgPoint.html#adg-point-get-pair" since="1.0"></keyword>
+    <keyword type="function" name="adg_point_invalidate ()" link="AdgPoint.html#adg-point-invalidate" since="1.0"></keyword>
+    <keyword type="function" name="adg_point_new ()" link="AdgPoint.html#adg-point-new" since="1.0"></keyword>
+    <keyword type="function" name="adg_point_set_pair ()" link="AdgPoint.html#adg-point-set-pair" since="1.0"></keyword>
+    <keyword type="function" name="adg_point_set_pair_explicit ()" link="AdgPoint.html#adg-point-set-pair-explicit" since="1.0"></keyword>
+    <keyword type="function" name="adg_point_set_pair_from_model ()" link="AdgPoint.html#adg-point-set-pair-from-model" since="1.0"></keyword>
+    <keyword type="function" name="adg_point_unset ()" link="AdgPoint.html#adg-point-unset" since="1.0"></keyword>
+    <keyword type="function" name="adg_point_update ()" link="AdgPoint.html#adg-point-update" since="1.0"></keyword>
+    <keyword type="function" name="adg_matrix_copy ()" link="Matrix.html#adg-matrix-copy" since="1.0"></keyword>
+    <keyword type="function" name="adg_matrix_dump ()" link="Matrix.html#adg-matrix-dump" since="1.0"></keyword>
+    <keyword type="function" name="adg_matrix_dup ()" link="Matrix.html#adg-matrix-dup" since="1.0"></keyword>
+    <keyword type="function" name="adg_matrix_equal ()" link="Matrix.html#adg-matrix-equal" since="1.0"></keyword>
+    <keyword type="function" name="adg_matrix_identity ()" link="Matrix.html#adg-matrix-identity" since="1.0"></keyword>
+    <keyword type="function" name="adg_matrix_normalize ()" link="Matrix.html#adg-matrix-normalize" since="1.0"></keyword>
+    <keyword type="function" name="adg_matrix_null ()" link="Matrix.html#adg-matrix-null" since="1.0"></keyword>
+    <keyword type="function" name="adg_matrix_transform ()" link="Matrix.html#adg-matrix-transform" since="1.0"></keyword>
+    <keyword type="function" name="AdgDependencyFunc ()" link="AdgModel.html#AdgDependencyFunc" since="1.0"></keyword>
+    <keyword type="struct" name="struct AdgModel" link="AdgModel.html#AdgModel-struct"></keyword>
+    <keyword type="struct" name="struct AdgModelClass" link="AdgModel.html#AdgModelClass" since="1.0"></keyword>
+    <keyword type="function" name="AdgNamedPairFunc ()" link="AdgModel.html#AdgNamedPairFunc" since="1.0"></keyword>
+    <keyword type="function" name="adg_model_add_dependency ()" link="AdgModel.html#adg-model-add-dependency" since="1.0"></keyword>
+    <keyword type="function" name="adg_model_changed ()" link="AdgModel.html#adg-model-changed" since="1.0"></keyword>
+    <keyword type="function" name="adg_model_clear ()" link="AdgModel.html#adg-model-clear" since="1.0"></keyword>
+    <keyword type="function" name="adg_model_foreach_dependency ()" link="AdgModel.html#adg-model-foreach-dependency" since="1.0"></keyword>
+    <keyword type="function" name="adg_model_foreach_named_pair ()" link="AdgModel.html#adg-model-foreach-named-pair" since="1.0"></keyword>
+    <keyword type="function" name="adg_model_get_dependencies ()" link="AdgModel.html#adg-model-get-dependencies" since="1.0"></keyword>
+    <keyword type="function" name="adg_model_get_named_pair ()" link="AdgModel.html#adg-model-get-named-pair" since="1.0"></keyword>
+    <keyword type="function" name="adg_model_remove_dependency ()" link="AdgModel.html#adg-model-remove-dependency" since="1.0"></keyword>
+    <keyword type="function" name="adg_model_reset ()" link="AdgModel.html#adg-model-reset" since="1.0"></keyword>
+    <keyword type="function" name="adg_model_set_named_pair ()" link="AdgModel.html#adg-model-set-named-pair" since="1.0"></keyword>
+    <keyword type="function" name="adg_model_set_named_pair_explicit ()" link="AdgModel.html#adg-model-set-named-pair-explicit" since="1.0"></keyword>
+    <keyword type="property" name="The &quot;dependency&quot; property" link="AdgModel.html#AdgModel--dependency"></keyword>
+    <keyword type="signal" name="The &quot;add-dependency&quot; signal" link="AdgModel.html#AdgModel-add-dependency"></keyword>
+    <keyword type="signal" name="The &quot;changed&quot; signal" link="AdgModel.html#AdgModel-changed"></keyword>
+    <keyword type="signal" name="The &quot;clear&quot; signal" link="AdgModel.html#AdgModel-clear"></keyword>
+    <keyword type="signal" name="The &quot;remove-dependency&quot; signal" link="AdgModel.html#AdgModel-remove-dependency"></keyword>
+    <keyword type="signal" name="The &quot;reset&quot; signal" link="AdgModel.html#AdgModel-reset"></keyword>
+    <keyword type="signal" name="The &quot;set-named-pair&quot; signal" link="AdgModel.html#AdgModel-set-named-pair"></keyword>
+    <keyword type="struct" name="struct AdgTrail" link="AdgTrail.html#AdgTrail-struct"></keyword>
+    <keyword type="function" name="AdgTrailCallback ()" link="AdgTrail.html#AdgTrailCallback" since="1.0"></keyword>
+    <keyword type="struct" name="struct AdgTrailClass" link="AdgTrail.html#AdgTrailClass" since="1.0"></keyword>
+    <keyword type="function" name="adg_trail_cairo_path ()" link="AdgTrail.html#adg-trail-cairo-path" since="1.0"></keyword>
+    <keyword type="function" name="adg_trail_dump ()" link="AdgTrail.html#adg-trail-dump" since="1.0"></keyword>
+    <keyword type="function" name="adg_trail_get_cairo_path ()" link="AdgTrail.html#adg-trail-get-cairo-path" since="1.0"></keyword>
+    <keyword type="function" name="adg_trail_get_extents ()" link="AdgTrail.html#adg-trail-get-extents" since="1.0"></keyword>
+    <keyword type="function" name="adg_trail_get_max_angle ()" link="AdgTrail.html#adg-trail-get-max-angle" since="1.0"></keyword>
+    <keyword type="function" name="adg_trail_new ()" link="AdgTrail.html#adg-trail-new" since="1.0"></keyword>
+    <keyword type="function" name="adg_trail_put_segment ()" link="AdgTrail.html#adg-trail-put-segment" since="1.0"></keyword>
+    <keyword type="function" name="adg_trail_set_max_angle ()" link="AdgTrail.html#adg-trail-set-max-angle" since="1.0"></keyword>
+    <keyword type="property" name="The &quot;max-angle&quot; property" link="AdgTrail.html#AdgTrail--max-angle"></keyword>
+    <keyword type="struct" name="struct AdgPath" link="AdgPath.html#AdgPath-struct"></keyword>
+    <keyword type="struct" name="struct AdgPathClass" link="AdgPath.html#AdgPathClass"></keyword>
+    <keyword type="function" name="adg_path_append ()" link="AdgPath.html#adg-path-append" since="1.0"></keyword>
+    <keyword type="function" name="adg_path_append_array ()" link="AdgPath.html#adg-path-append-array" since="1.0"></keyword>
+    <keyword type="function" name="adg_path_append_cpml_path ()" link="AdgPath.html#adg-path-append-cpml-path"></keyword>
+    <keyword type="function" name="adg_path_append_primitive ()" link="AdgPath.html#adg-path-append-primitive" since="1.0"></keyword>
+    <keyword type="function" name="adg_path_append_segment ()" link="AdgPath.html#adg-path-append-segment" since="1.0"></keyword>
+    <keyword type="function" name="adg_path_append_valist ()" link="AdgPath.html#adg-path-append-valist" since="1.0"></keyword>
+    <keyword type="function" name="adg_path_arc ()" link="AdgPath.html#adg-path-arc" since="1.0"></keyword>
+    <keyword type="function" name="adg_path_arc_explicit ()" link="AdgPath.html#adg-path-arc-explicit" since="1.0"></keyword>
+    <keyword type="function" name="adg_path_arc_to ()" link="AdgPath.html#adg-path-arc-to" since="1.0"></keyword>
+    <keyword type="function" name="adg_path_arc_to_explicit ()" link="AdgPath.html#adg-path-arc-to-explicit" since="1.0"></keyword>
+    <keyword type="function" name="adg_path_chamfer ()" link="AdgPath.html#adg-path-chamfer" since="1.0"></keyword>
+    <keyword type="function" name="adg_path_close ()" link="AdgPath.html#adg-path-close" since="1.0"></keyword>
+    <keyword type="function" name="adg_path_curve_to ()" link="AdgPath.html#adg-path-curve-to" since="1.0"></keyword>
+    <keyword type="function" name="adg_path_curve_to_explicit ()" link="AdgPath.html#adg-path-curve-to-explicit" since="1.0"></keyword>
+    <keyword type="function" name="adg_path_fillet ()" link="AdgPath.html#adg-path-fillet" since="1.0"></keyword>
+    <keyword type="function" name="adg_path_get_current_point ()" link="AdgPath.html#adg-path-get-current-point" since="1.0"></keyword>
+    <keyword type="function" name="adg_path_has_current_point ()" link="AdgPath.html#adg-path-has-current-point" since="1.0"></keyword>
+    <keyword type="function" name="adg_path_last_primitive ()" link="AdgPath.html#adg-path-last-primitive" since="1.0"></keyword>
+    <keyword type="function" name="adg_path_line_to ()" link="AdgPath.html#adg-path-line-to" since="1.0"></keyword>
+    <keyword type="function" name="adg_path_line_to_explicit ()" link="AdgPath.html#adg-path-line-to-explicit" since="1.0"></keyword>
+    <keyword type="function" name="adg_path_move_to ()" link="AdgPath.html#adg-path-move-to" since="1.0"></keyword>
+    <keyword type="function" name="adg_path_move_to_explicit ()" link="AdgPath.html#adg-path-move-to-explicit" since="1.0"></keyword>
+    <keyword type="function" name="adg_path_new ()" link="AdgPath.html#adg-path-new" since="1.0"></keyword>
+    <keyword type="function" name="adg_path_over_primitive ()" link="AdgPath.html#adg-path-over-primitive" since="1.0"></keyword>
+    <keyword type="function" name="adg_path_reflect ()" link="AdgPath.html#adg-path-reflect" since="1.0"></keyword>
+    <keyword type="function" name="adg_path_reflect_explicit ()" link="AdgPath.html#adg-path-reflect-explicit" since="1.0"></keyword>
+    <keyword type="struct" name="struct AdgEdges" link="AdgEdges.html#AdgEdges-struct"></keyword>
+    <keyword type="struct" name="struct AdgEdgesClass" link="AdgEdges.html#AdgEdgesClass"></keyword>
+    <keyword type="function" name="adg_edges_get_axis_angle ()" link="AdgEdges.html#adg-edges-get-axis-angle" since="1.0"></keyword>
+    <keyword type="function" name="adg_edges_get_critical_angle ()" link="AdgEdges.html#adg-edges-get-critical-angle" since="1.0"></keyword>
+    <keyword type="function" name="adg_edges_get_source ()" link="AdgEdges.html#adg-edges-get-source" since="1.0"></keyword>
+    <keyword type="function" name="adg_edges_new ()" link="AdgEdges.html#adg-edges-new" since="1.0"></keyword>
+    <keyword type="function" name="adg_edges_new_with_source ()" link="AdgEdges.html#adg-edges-new-with-source" since="1.0"></keyword>
+    <keyword type="function" name="adg_edges_set_axis_angle ()" link="AdgEdges.html#adg-edges-set-axis-angle" since="1.0"></keyword>
+    <keyword type="function" name="adg_edges_set_critical_angle ()" link="AdgEdges.html#adg-edges-set-critical-angle" since="1.0"></keyword>
+    <keyword type="function" name="adg_edges_set_source ()" link="AdgEdges.html#adg-edges-set-source" since="1.0"></keyword>
+    <keyword type="property" name="The &quot;axis-angle&quot; property" link="AdgEdges.html#AdgEdges--axis-angle"></keyword>
+    <keyword type="property" name="The &quot;critical-angle&quot; property" link="AdgEdges.html#AdgEdges--critical-angle"></keyword>
+    <keyword type="property" name="The &quot;source&quot; property" link="AdgEdges.html#AdgEdges--source"></keyword>
+    <keyword type="struct" name="struct AdgCanvas" link="AdgCanvas.html#AdgCanvas-struct"></keyword>
+    <keyword type="struct" name="struct AdgCanvasClass" link="AdgCanvas.html#AdgCanvasClass"></keyword>
+    <keyword type="function" name="adg_canvas_apply_margins ()" link="AdgCanvas.html#adg-canvas-apply-margins" since="1.0"></keyword>
+    <keyword type="function" name="adg_canvas_autoscale ()" link="AdgCanvas.html#adg-canvas-autoscale" since="1.0"></keyword>
+    <keyword type="function" name="adg_canvas_get_background_dress ()" link="AdgCanvas.html#adg-canvas-get-background-dress" since="1.0"></keyword>
+    <keyword type="function" name="adg_canvas_get_bottom_margin ()" link="AdgCanvas.html#adg-canvas-get-bottom-margin" since="1.0"></keyword>
+    <keyword type="function" name="adg_canvas_get_bottom_padding ()" link="AdgCanvas.html#adg-canvas-get-bottom-padding" since="1.0"></keyword>
+    <keyword type="function" name="adg_canvas_get_frame_dress ()" link="AdgCanvas.html#adg-canvas-get-frame-dress" since="1.0"></keyword>
+    <keyword type="function" name="adg_canvas_get_left_margin ()" link="AdgCanvas.html#adg-canvas-get-left-margin" since="1.0"></keyword>
+    <keyword type="function" name="adg_canvas_get_left_padding ()" link="AdgCanvas.html#adg-canvas-get-left-padding" since="1.0"></keyword>
+    <keyword type="function" name="adg_canvas_get_page_setup ()" link="AdgCanvas.html#adg-canvas-get-page-setup" since="1.0"></keyword>
+    <keyword type="function" name="adg_canvas_get_right_margin ()" link="AdgCanvas.html#adg-canvas-get-right-margin" since="1.0"></keyword>
+    <keyword type="function" name="adg_canvas_get_right_padding ()" link="AdgCanvas.html#adg-canvas-get-right-padding" since="1.0"></keyword>
+    <keyword type="function" name="adg_canvas_get_scales ()" link="AdgCanvas.html#adg-canvas-get-scales" since="1.0"></keyword>
+    <keyword type="function" name="adg_canvas_get_size ()" link="AdgCanvas.html#adg-canvas-get-size" since="1.0"></keyword>
+    <keyword type="function" name="adg_canvas_get_title_block ()" link="AdgCanvas.html#adg-canvas-get-title-block" since="1.0"></keyword>
+    <keyword type="function" name="adg_canvas_get_top_margin ()" link="AdgCanvas.html#adg-canvas-get-top-margin" since="1.0"></keyword>
+    <keyword type="function" name="adg_canvas_get_top_padding ()" link="AdgCanvas.html#adg-canvas-get-top-padding" since="1.0"></keyword>
+    <keyword type="function" name="adg_canvas_has_frame ()" link="AdgCanvas.html#adg-canvas-has-frame" since="1.0"></keyword>
+    <keyword type="function" name="adg_canvas_new ()" link="AdgCanvas.html#adg-canvas-new" since="1.0"></keyword>
+    <keyword type="function" name="adg_canvas_set_background_dress ()" link="AdgCanvas.html#adg-canvas-set-background-dress" since="1.0"></keyword>
+    <keyword type="function" name="adg_canvas_set_bottom_margin ()" link="AdgCanvas.html#adg-canvas-set-bottom-margin" since="1.0"></keyword>
+    <keyword type="function" name="adg_canvas_set_bottom_padding ()" link="AdgCanvas.html#adg-canvas-set-bottom-padding" since="1.0"></keyword>
+    <keyword type="function" name="adg_canvas_set_frame_dress ()" link="AdgCanvas.html#adg-canvas-set-frame-dress" since="1.0"></keyword>
+    <keyword type="function" name="adg_canvas_set_left_margin ()" link="AdgCanvas.html#adg-canvas-set-left-margin" since="1.0"></keyword>
+    <keyword type="function" name="adg_canvas_set_left_padding ()" link="AdgCanvas.html#adg-canvas-set-left-padding" since="1.0"></keyword>
+    <keyword type="function" name="adg_canvas_set_margins ()" link="AdgCanvas.html#adg-canvas-set-margins" since="1.0"></keyword>
+    <keyword type="function" name="adg_canvas_set_paddings ()" link="AdgCanvas.html#adg-canvas-set-paddings" since="1.0"></keyword>
+    <keyword type="function" name="adg_canvas_set_page_setup ()" link="AdgCanvas.html#adg-canvas-set-page-setup" since="1.0"></keyword>
+    <keyword type="function" name="adg_canvas_set_paper ()" link="AdgCanvas.html#adg-canvas-set-paper" since="1.0"></keyword>
+    <keyword type="function" name="adg_canvas_set_right_margin ()" link="AdgCanvas.html#adg-canvas-set-right-margin" since="1.0"></keyword>
+    <keyword type="function" name="adg_canvas_set_right_padding ()" link="AdgCanvas.html#adg-canvas-set-right-padding" since="1.0"></keyword>
+    <keyword type="function" name="adg_canvas_set_scales ()" link="AdgCanvas.html#adg-canvas-set-scales" since="1.0"></keyword>
+    <keyword type="function" name="adg_canvas_set_scales_array ()" link="AdgCanvas.html#adg-canvas-set-scales-array" since="1.0"></keyword>
+    <keyword type="function" name="adg_canvas_set_scales_valist ()" link="AdgCanvas.html#adg-canvas-set-scales-valist" since="1.0"></keyword>
+    <keyword type="function" name="adg_canvas_set_size ()" link="AdgCanvas.html#adg-canvas-set-size" since="1.0"></keyword>
+    <keyword type="function" name="adg_canvas_set_size_explicit ()" link="AdgCanvas.html#adg-canvas-set-size-explicit" since="1.0"></keyword>
+    <keyword type="function" name="adg_canvas_set_title_block ()" link="AdgCanvas.html#adg-canvas-set-title-block" since="1.0"></keyword>
+    <keyword type="function" name="adg_canvas_set_top_margin ()" link="AdgCanvas.html#adg-canvas-set-top-margin" since="1.0"></keyword>
+    <keyword type="function" name="adg_canvas_set_top_padding ()" link="AdgCanvas.html#adg-canvas-set-top-padding" since="1.0"></keyword>
+    <keyword type="function" name="adg_canvas_switch_frame ()" link="AdgCanvas.html#adg-canvas-switch-frame" since="1.0"></keyword>
+    <keyword type="property" name="The &quot;background-dress&quot; property" link="AdgCanvas.html#AdgCanvas--background-dress"></keyword>
+    <keyword type="property" name="The &quot;bottom-margin&quot; property" link="AdgCanvas.html#AdgCanvas--bottom-margin"></keyword>
+    <keyword type="property" name="The &quot;bottom-padding&quot; property" link="AdgCanvas.html#AdgCanvas--bottom-padding"></keyword>
+    <keyword type="property" name="The &quot;frame-dress&quot; property" link="AdgCanvas.html#AdgCanvas--frame-dress"></keyword>
+    <keyword type="property" name="The &quot;has-frame&quot; property" link="AdgCanvas.html#AdgCanvas--has-frame"></keyword>
+    <keyword type="property" name="The &quot;left-margin&quot; property" link="AdgCanvas.html#AdgCanvas--left-margin"></keyword>
+    <keyword type="property" name="The &quot;left-padding&quot; property" link="AdgCanvas.html#AdgCanvas--left-padding"></keyword>
+    <keyword type="property" name="The &quot;right-margin&quot; property" link="AdgCanvas.html#AdgCanvas--right-margin"></keyword>
+    <keyword type="property" name="The &quot;right-padding&quot; property" link="AdgCanvas.html#AdgCanvas--right-padding"></keyword>
+    <keyword type="property" name="The &quot;scales&quot; property" link="AdgCanvas.html#AdgCanvas--scales"></keyword>
+    <keyword type="property" name="The &quot;size&quot; property" link="AdgCanvas.html#AdgCanvas--size"></keyword>
+    <keyword type="property" name="The &quot;title-block&quot; property" link="AdgCanvas.html#AdgCanvas--title-block"></keyword>
+    <keyword type="property" name="The &quot;top-margin&quot; property" link="AdgCanvas.html#AdgCanvas--top-margin"></keyword>
+    <keyword type="property" name="The &quot;top-padding&quot; property" link="AdgCanvas.html#AdgCanvas--top-padding"></keyword>
+    <keyword type="struct" name="struct AdgEntity" link="AdgEntity.html#AdgEntity-struct"></keyword>
+    <keyword type="struct" name="struct AdgEntityClass" link="AdgEntity.html#AdgEntityClass" since="1.0"></keyword>
+    <keyword type="function" name="adg_entity_apply_dress ()" link="AdgEntity.html#adg-entity-apply-dress" since="1.0"></keyword>
+    <keyword type="function" name="adg_entity_arrange ()" link="AdgEntity.html#adg-entity-arrange" since="1.0"></keyword>
+    <keyword type="function" name="adg_entity_destroy ()" link="AdgEntity.html#adg-entity-destroy" since="1.0"></keyword>
+    <keyword type="function" name="adg_entity_get_canvas ()" link="AdgEntity.html#adg-entity-get-canvas" since="1.0"></keyword>
+    <keyword type="function" name="adg_entity_get_extents ()" link="AdgEntity.html#adg-entity-get-extents" since="1.0"></keyword>
+    <keyword type="function" name="adg_entity_get_global_map ()" link="AdgEntity.html#adg-entity-get-global-map" since="1.0"></keyword>
+    <keyword type="function" name="adg_entity_get_global_matrix ()" link="AdgEntity.html#adg-entity-get-global-matrix" since="1.0"></keyword>
+    <keyword type="function" name="adg_entity_get_local_map ()" link="AdgEntity.html#adg-entity-get-local-map" since="1.0"></keyword>
+    <keyword type="function" name="adg_entity_get_local_matrix ()" link="AdgEntity.html#adg-entity-get-local-matrix" since="1.0"></keyword>
+    <keyword type="function" name="adg_entity_get_local_mix ()" link="AdgEntity.html#adg-entity-get-local-mix" since="1.0"></keyword>
+    <keyword type="function" name="adg_entity_get_parent ()" link="AdgEntity.html#adg-entity-get-parent" since="1.0"></keyword>
+    <keyword type="function" name="adg_entity_get_style ()" link="AdgEntity.html#adg-entity-get-style" since="1.0"></keyword>
+    <keyword type="function" name="adg_entity_global_changed ()" link="AdgEntity.html#adg-entity-global-changed" since="1.0"></keyword>
+    <keyword type="function" name="adg_entity_invalidate ()" link="AdgEntity.html#adg-entity-invalidate" since="1.0"></keyword>
+    <keyword type="function" name="adg_entity_local_changed ()" link="AdgEntity.html#adg-entity-local-changed" since="1.0"></keyword>
+    <keyword type="function" name="adg_entity_point ()" link="AdgEntity.html#adg-entity-point" since="1.0"></keyword>
+    <keyword type="function" name="adg_entity_render ()" link="AdgEntity.html#adg-entity-render" since="1.0"></keyword>
+    <keyword type="function" name="adg_entity_set_extents ()" link="AdgEntity.html#adg-entity-set-extents" since="1.0"></keyword>
+    <keyword type="function" name="adg_entity_set_global_map ()" link="AdgEntity.html#adg-entity-set-global-map" since="1.0"></keyword>
+    <keyword type="function" name="adg_entity_set_local_map ()" link="AdgEntity.html#adg-entity-set-local-map" since="1.0"></keyword>
+    <keyword type="function" name="adg_entity_set_local_mix ()" link="AdgEntity.html#adg-entity-set-local-mix" since="1.0"></keyword>
+    <keyword type="function" name="adg_entity_set_parent ()" link="AdgEntity.html#adg-entity-set-parent" since="1.0"></keyword>
+    <keyword type="function" name="adg_entity_set_style ()" link="AdgEntity.html#adg-entity-set-style" since="1.0"></keyword>
+    <keyword type="function" name="adg_entity_style ()" link="AdgEntity.html#adg-entity-style" since="1.0"></keyword>
+    <keyword type="function" name="adg_entity_transform_global_map ()" link="AdgEntity.html#adg-entity-transform-global-map" since="1.0"></keyword>
+    <keyword type="function" name="adg_entity_transform_local_map ()" link="AdgEntity.html#adg-entity-transform-local-map" since="1.0"></keyword>
+    <keyword type="function" name="adg_switch_extents ()" link="AdgEntity.html#adg-switch-extents" since="1.0"></keyword>
+    <keyword type="property" name="The &quot;global-map&quot; property" link="AdgEntity.html#AdgEntity--global-map"></keyword>
+    <keyword type="property" name="The &quot;local-map&quot; property" link="AdgEntity.html#AdgEntity--local-map"></keyword>
+    <keyword type="property" name="The &quot;local-mix&quot; property" link="AdgEntity.html#AdgEntity--local-mix"></keyword>
+    <keyword type="property" name="The &quot;parent&quot; property" link="AdgEntity.html#AdgEntity--parent"></keyword>
+    <keyword type="signal" name="The &quot;arrange&quot; signal" link="AdgEntity.html#AdgEntity-arrange"></keyword>
+    <keyword type="signal" name="The &quot;destroy&quot; signal" link="AdgEntity.html#AdgEntity-destroy"></keyword>
+    <keyword type="signal" name="The &quot;global-changed&quot; signal" link="AdgEntity.html#AdgEntity-global-changed"></keyword>
+    <keyword type="signal" name="The &quot;invalidate&quot; signal" link="AdgEntity.html#AdgEntity-invalidate"></keyword>
+    <keyword type="signal" name="The &quot;local-changed&quot; signal" link="AdgEntity.html#AdgEntity-local-changed"></keyword>
+    <keyword type="signal" name="The &quot;parent-set&quot; signal" link="AdgEntity.html#AdgEntity-parent-set"></keyword>
+    <keyword type="signal" name="The &quot;render&quot; signal" link="AdgEntity.html#AdgEntity-render"></keyword>
+    <keyword type="struct" name="struct AdgContainer" link="AdgContainer.html#AdgContainer-struct"></keyword>
+    <keyword type="struct" name="struct AdgContainerClass" link="AdgContainer.html#AdgContainerClass" since="1.0"></keyword>
+    <keyword type="function" name="adg_container_add ()" link="AdgContainer.html#adg-container-add" since="1.0"></keyword>
+    <keyword type="function" name="adg_container_children ()" link="AdgContainer.html#adg-container-children" since="1.0"></keyword>
+    <keyword type="function" name="adg_container_foreach ()" link="AdgContainer.html#adg-container-foreach" since="1.0"></keyword>
+    <keyword type="function" name="adg_container_new ()" link="AdgContainer.html#adg-container-new" since="1.0"></keyword>
+    <keyword type="function" name="adg_container_propagate ()" link="AdgContainer.html#adg-container-propagate" since="1.0"></keyword>
+    <keyword type="function" name="adg_container_propagate_by_name ()" link="AdgContainer.html#adg-container-propagate-by-name" since="1.0"></keyword>
+    <keyword type="function" name="adg_container_propagate_valist ()" link="AdgContainer.html#adg-container-propagate-valist" since="1.0"></keyword>
+    <keyword type="function" name="adg_container_remove ()" link="AdgContainer.html#adg-container-remove" since="1.0"></keyword>
+    <keyword type="property" name="The &quot;child&quot; property" link="AdgContainer.html#AdgContainer--child"></keyword>
+    <keyword type="signal" name="The &quot;add&quot; signal" link="AdgContainer.html#AdgContainer-add"></keyword>
+    <keyword type="signal" name="The &quot;remove&quot; signal" link="AdgContainer.html#AdgContainer-remove"></keyword>
+    <keyword type="struct" name="struct AdgAlignment" link="AdgAlignment.html#AdgAlignment-struct"></keyword>
+    <keyword type="struct" name="struct AdgAlignmentClass" link="AdgAlignment.html#AdgAlignmentClass"></keyword>
+    <keyword type="function" name="adg_alignment_get_factor ()" link="AdgAlignment.html#adg-alignment-get-factor" since="1.0"></keyword>
+    <keyword type="function" name="adg_alignment_new ()" link="AdgAlignment.html#adg-alignment-new" since="1.0"></keyword>
+    <keyword type="function" name="adg_alignment_new_explicit ()" link="AdgAlignment.html#adg-alignment-new-explicit" since="1.0"></keyword>
+    <keyword type="function" name="adg_alignment_set_factor ()" link="AdgAlignment.html#adg-alignment-set-factor" since="1.0"></keyword>
+    <keyword type="function" name="adg_alignment_set_factor_explicit ()" link="AdgAlignment.html#adg-alignment-set-factor-explicit" since="1.0"></keyword>
+    <keyword type="property" name="The &quot;factor&quot; property" link="AdgAlignment.html#AdgAlignment--factor"></keyword>
+    <keyword type="struct" name="struct AdgTextualIface" link="AdgTextual.html#AdgTextualIface" since="1.0"></keyword>
+    <keyword type="function" name="adg_textual_dup_text ()" link="AdgTextual.html#adg-textual-dup-text" since="1.0"></keyword>
+    <keyword type="function" name="adg_textual_get_font_dress ()" link="AdgTextual.html#adg-textual-get-font-dress" since="1.0"></keyword>
+    <keyword type="function" name="adg_textual_set_font_dress ()" link="AdgTextual.html#adg-textual-set-font-dress" since="1.0"></keyword>
+    <keyword type="function" name="adg_textual_set_text ()" link="AdgTextual.html#adg-textual-set-text" since="1.0"></keyword>
+    <keyword type="function" name="adg_textual_text_changed ()" link="AdgTextual.html#adg-textual-text-changed" since="1.0"></keyword>
+    <keyword type="struct" name="struct AdgStroke" link="AdgStroke.html#AdgStroke-struct"></keyword>
+    <keyword type="struct" name="struct AdgStrokeClass" link="AdgStroke.html#AdgStrokeClass"></keyword>
+    <keyword type="function" name="adg_stroke_get_line_dress ()" link="AdgStroke.html#adg-stroke-get-line-dress" since="1.0"></keyword>
+    <keyword type="function" name="adg_stroke_get_trail ()" link="AdgStroke.html#adg-stroke-get-trail" since="1.0"></keyword>
+    <keyword type="function" name="adg_stroke_new ()" link="AdgStroke.html#adg-stroke-new" since="1.0"></keyword>
+    <keyword type="function" name="adg_stroke_set_line_dress ()" link="AdgStroke.html#adg-stroke-set-line-dress" since="1.0"></keyword>
+    <keyword type="function" name="adg_stroke_set_trail ()" link="AdgStroke.html#adg-stroke-set-trail" since="1.0"></keyword>
+    <keyword type="property" name="The &quot;line-dress&quot; property" link="AdgStroke.html#AdgStroke--line-dress"></keyword>
+    <keyword type="property" name="The &quot;trail&quot; property" link="AdgStroke.html#AdgStroke--trail"></keyword>
+    <keyword type="struct" name="struct AdgHatch" link="AdgHatch.html#AdgHatch-struct"></keyword>
+    <keyword type="struct" name="struct AdgHatchClass" link="AdgHatch.html#AdgHatchClass"></keyword>
+    <keyword type="function" name="adg_hatch_get_fill_dress ()" link="AdgHatch.html#adg-hatch-get-fill-dress" since="1.0"></keyword>
+    <keyword type="function" name="adg_hatch_new ()" link="AdgHatch.html#adg-hatch-new" since="1.0"></keyword>
+    <keyword type="function" name="adg_hatch_set_fill_dress ()" link="AdgHatch.html#adg-hatch-set-fill-dress" since="1.0"></keyword>
+    <keyword type="property" name="The &quot;fill-dress&quot; property" link="AdgHatch.html#AdgHatch--fill-dress"></keyword>
+    <keyword type="struct" name="struct AdgToyText" link="AdgToyText.html#AdgToyText-struct"></keyword>
+    <keyword type="struct" name="struct AdgToyTextClass" link="AdgToyText.html#AdgToyTextClass"></keyword>
+    <keyword type="function" name="adg_toy_text_new ()" link="AdgToyText.html#adg-toy-text-new" since="1.0"></keyword>
+    <keyword type="struct" name="struct AdgText" link="AdgText.html#AdgText-struct"></keyword>
+    <keyword type="struct" name="struct AdgTextClass" link="AdgText.html#AdgTextClass"></keyword>
+    <keyword type="function" name="adg_text_new ()" link="AdgText.html#adg-text-new" since="1.0"></keyword>
+    <keyword type="struct" name="struct AdgTable" link="AdgTable.html#AdgTable-struct"></keyword>
+    <keyword type="struct" name="struct AdgTableClass" link="AdgTable.html#AdgTableClass"></keyword>
+    <keyword type="function" name="adg_table_foreach ()" link="AdgTable.html#adg-table-foreach" since="1.0"></keyword>
+    <keyword type="function" name="adg_table_foreach_cell ()" link="AdgTable.html#adg-table-foreach-cell" since="1.0"></keyword>
+    <keyword type="function" name="adg_table_get_cell ()" link="AdgTable.html#adg-table-get-cell" since="1.0"></keyword>
+    <keyword type="function" name="adg_table_get_table_dress ()" link="AdgTable.html#adg-table-get-table-dress" since="1.0"></keyword>
+    <keyword type="function" name="adg_table_get_table_style ()" link="AdgTable.html#adg-table-get-table-style" since="1.0"></keyword>
+    <keyword type="function" name="adg_table_has_frame ()" link="AdgTable.html#adg-table-has-frame" since="1.0"></keyword>
+    <keyword type="function" name="adg_table_insert ()" link="AdgTable.html#adg-table-insert" since="1.0"></keyword>
+    <keyword type="function" name="adg_table_invalidate_grid ()" link="AdgTable.html#adg-table-invalidate-grid"></keyword>
+    <keyword type="function" name="adg_table_new ()" link="AdgTable.html#adg-table-new" since="1.0"></keyword>
+    <keyword type="function" name="adg_table_remove ()" link="AdgTable.html#adg-table-remove" since="1.0"></keyword>
+    <keyword type="function" name="adg_table_set_cell ()" link="AdgTable.html#adg-table-set-cell" since="1.0"></keyword>
+    <keyword type="function" name="adg_table_set_table_dress ()" link="AdgTable.html#adg-table-set-table-dress" since="1.0"></keyword>
+    <keyword type="function" name="adg_table_switch_frame ()" link="AdgTable.html#adg-table-switch-frame" since="1.0"></keyword>
+    <keyword type="property" name="The &quot;has-frame&quot; property" link="AdgTable.html#AdgTable--has-frame"></keyword>
+    <keyword type="property" name="The &quot;table-dress&quot; property" link="AdgTable.html#AdgTable--table-dress"></keyword>
+    <keyword type="function" name="adg_table_row_arrange ()" link="AdgTableRow.html#adg-table-row-arrange" since="1.0"></keyword>
+    <keyword type="function" name="adg_table_row_dup ()" link="AdgTableRow.html#adg-table-row-dup" since="1.0"></keyword>
+    <keyword type="function" name="adg_table_row_foreach ()" link="AdgTableRow.html#adg-table-row-foreach" since="1.0"></keyword>
+    <keyword type="function" name="adg_table_row_free ()" link="AdgTableRow.html#adg-table-row-free" since="1.0"></keyword>
+    <keyword type="function" name="adg_table_row_get_extents ()" link="AdgTableRow.html#adg-table-row-get-extents" since="1.0"></keyword>
+    <keyword type="function" name="adg_table_row_get_height ()" link="AdgTableRow.html#adg-table-row-get-height" since="1.0"></keyword>
+    <keyword type="function" name="adg_table_row_get_table ()" link="AdgTableRow.html#adg-table-row-get-table" since="1.0"></keyword>
+    <keyword type="function" name="adg_table_row_insert ()" link="AdgTableRow.html#adg-table-row-insert" since="1.0"></keyword>
+    <keyword type="function" name="adg_table_row_new ()" link="AdgTableRow.html#adg-table-row-new" since="1.0"></keyword>
+    <keyword type="function" name="adg_table_row_new_before ()" link="AdgTableRow.html#adg-table-row-new-before" since="1.0"></keyword>
+    <keyword type="function" name="adg_table_row_remove ()" link="AdgTableRow.html#adg-table-row-remove" since="1.0"></keyword>
+    <keyword type="function" name="adg_table_row_set_height ()" link="AdgTableRow.html#adg-table-row-set-height" since="1.0"></keyword>
+    <keyword type="function" name="adg_table_row_size_request ()" link="AdgTableRow.html#adg-table-row-size-request" since="1.0"></keyword>
+    <keyword type="function" name="adg_table_cell_arrange ()" link="AdgTableCell.html#adg-table-cell-arrange" since="1.0"></keyword>
+    <keyword type="function" name="adg_table_cell_dispose ()" link="AdgTableCell.html#adg-table-cell-dispose" since="1.0"></keyword>
+    <keyword type="function" name="adg_table_cell_dup ()" link="AdgTableCell.html#adg-table-cell-dup" since="1.0"></keyword>
+    <keyword type="function" name="adg_table_cell_free ()" link="AdgTableCell.html#adg-table-cell-free" since="1.0"></keyword>
+    <keyword type="function" name="adg_table_cell_get_extents ()" link="AdgTableCell.html#adg-table-cell-get-extents" since="1.0"></keyword>
+    <keyword type="function" name="adg_table_cell_get_row ()" link="AdgTableCell.html#adg-table-cell-get-row" since="1.0"></keyword>
+    <keyword type="function" name="adg_table_cell_get_table ()" link="AdgTableCell.html#adg-table-cell-get-table" since="1.0"></keyword>
+    <keyword type="function" name="adg_table_cell_get_width ()" link="AdgTableCell.html#adg-table-cell-get-width" since="1.0"></keyword>
+    <keyword type="function" name="adg_table_cell_has_frame ()" link="AdgTableCell.html#adg-table-cell-has-frame" since="1.0"></keyword>
+    <keyword type="function" name="adg_table_cell_new ()" link="AdgTableCell.html#adg-table-cell-new" since="1.0"></keyword>
+    <keyword type="function" name="adg_table_cell_new_before ()" link="AdgTableCell.html#adg-table-cell-new-before" since="1.0"></keyword>
+    <keyword type="function" name="adg_table_cell_new_full ()" link="AdgTableCell.html#adg-table-cell-new-full" since="1.0"></keyword>
+    <keyword type="function" name="adg_table_cell_new_with_width ()" link="AdgTableCell.html#adg-table-cell-new-with-width" since="1.0"></keyword>
+    <keyword type="function" name="adg_table_cell_set_text_title ()" link="AdgTableCell.html#adg-table-cell-set-text-title" since="1.0"></keyword>
+    <keyword type="function" name="adg_table_cell_set_text_value ()" link="AdgTableCell.html#adg-table-cell-set-text-value" since="1.0"></keyword>
+    <keyword type="function" name="adg_table_cell_set_title ()" link="AdgTableCell.html#adg-table-cell-set-title" since="1.0"></keyword>
+    <keyword type="function" name="adg_table_cell_set_value ()" link="AdgTableCell.html#adg-table-cell-set-value" since="1.0"></keyword>
+    <keyword type="function" name="adg_table_cell_set_value_pos ()" link="AdgTableCell.html#adg-table-cell-set-value-pos" since="1.0"></keyword>
+    <keyword type="function" name="adg_table_cell_set_value_pos_explicit ()" link="AdgTableCell.html#adg-table-cell-set-value-pos-explicit" since="1.0"></keyword>
+    <keyword type="function" name="adg_table_cell_set_width ()" link="AdgTableCell.html#adg-table-cell-set-width" since="1.0"></keyword>
+    <keyword type="function" name="adg_table_cell_size_request ()" link="AdgTableCell.html#adg-table-cell-size-request" since="1.0"></keyword>
+    <keyword type="function" name="adg_table_cell_switch_frame ()" link="AdgTableCell.html#adg-table-cell-switch-frame" since="1.0"></keyword>
+    <keyword type="function" name="adg_table_cell_title ()" link="AdgTableCell.html#adg-table-cell-title" since="1.0"></keyword>
+    <keyword type="function" name="adg_table_cell_value ()" link="AdgTableCell.html#adg-table-cell-value" since="1.0"></keyword>
+    <keyword type="struct" name="struct AdgLogo" link="AdgLogo.html#AdgLogo-struct"></keyword>
+    <keyword type="struct" name="struct AdgLogoClass" link="AdgLogo.html#AdgLogoClass"></keyword>
+    <keyword type="function" name="adg_logo_get_frame_dress ()" link="AdgLogo.html#adg-logo-get-frame-dress" since="1.0"></keyword>
+    <keyword type="function" name="adg_logo_get_screen_dress ()" link="AdgLogo.html#adg-logo-get-screen-dress" since="1.0"></keyword>
+    <keyword type="function" name="adg_logo_get_symbol_dress ()" link="AdgLogo.html#adg-logo-get-symbol-dress" since="1.0"></keyword>
+    <keyword type="function" name="adg_logo_new ()" link="AdgLogo.html#adg-logo-new" since="1.0"></keyword>
+    <keyword type="function" name="adg_logo_set_frame_dress ()" link="AdgLogo.html#adg-logo-set-frame-dress" since="1.0"></keyword>
+    <keyword type="function" name="adg_logo_set_screen_dress ()" link="AdgLogo.html#adg-logo-set-screen-dress" since="1.0"></keyword>
+    <keyword type="function" name="adg_logo_set_symbol_dress ()" link="AdgLogo.html#adg-logo-set-symbol-dress" since="1.0"></keyword>
+    <keyword type="property" name="The &quot;frame-dress&quot; property" link="AdgLogo.html#AdgLogo--frame-dress"></keyword>
+    <keyword type="property" name="The &quot;screen-dress&quot; property" link="AdgLogo.html#AdgLogo--screen-dress"></keyword>
+    <keyword type="property" name="The &quot;symbol-dress&quot; property" link="AdgLogo.html#AdgLogo--symbol-dress"></keyword>
+    <keyword type="struct" name="struct AdgProjection" link="AdgProjection.html#AdgProjection-struct"></keyword>
+    <keyword type="struct" name="struct AdgProjectionClass" link="AdgProjection.html#AdgProjectionClass"></keyword>
+    <keyword type="function" name="adg_projection_get_axis_dress ()" link="AdgProjection.html#adg-projection-get-axis-dress" since="1.0"></keyword>
+    <keyword type="function" name="adg_projection_get_scheme ()" link="AdgProjection.html#adg-projection-get-scheme" since="1.0"></keyword>
+    <keyword type="function" name="adg_projection_get_symbol_dress ()" link="AdgProjection.html#adg-projection-get-symbol-dress" since="1.0"></keyword>
+    <keyword type="function" name="adg_projection_new ()" link="AdgProjection.html#adg-projection-new" since="1.0"></keyword>
+    <keyword type="function" name="adg_projection_set_axis_dress ()" link="AdgProjection.html#adg-projection-set-axis-dress" since="1.0"></keyword>
+    <keyword type="function" name="adg_projection_set_scheme ()" link="AdgProjection.html#adg-projection-set-scheme" since="1.0"></keyword>
+    <keyword type="function" name="adg_projection_set_symbol_dress ()" link="AdgProjection.html#adg-projection-set-symbol-dress" since="1.0"></keyword>
+    <keyword type="property" name="The &quot;axis-dress&quot; property" link="AdgProjection.html#AdgProjection--axis-dress"></keyword>
+    <keyword type="property" name="The &quot;scheme&quot; property" link="AdgProjection.html#AdgProjection--scheme"></keyword>
+    <keyword type="property" name="The &quot;symbol-dress&quot; property" link="AdgProjection.html#AdgProjection--symbol-dress"></keyword>
+    <keyword type="struct" name="struct AdgTitleBlock" link="AdgTitleBlock.html#AdgTitleBlock-struct"></keyword>
+    <keyword type="struct" name="struct AdgTitleBlockClass" link="AdgTitleBlock.html#AdgTitleBlockClass"></keyword>
+    <keyword type="function" name="adg_title_block_get_author ()" link="AdgTitleBlock.html#adg-title-block-get-author" since="1.0"></keyword>
+    <keyword type="function" name="adg_title_block_get_date ()" link="AdgTitleBlock.html#adg-title-block-get-date" since="1.0"></keyword>
+    <keyword type="function" name="adg_title_block_get_drawing ()" link="AdgTitleBlock.html#adg-title-block-get-drawing" since="1.0"></keyword>
+    <keyword type="function" name="adg_title_block_get_scale ()" link="AdgTitleBlock.html#adg-title-block-get-scale" since="1.0"></keyword>
+    <keyword type="function" name="adg_title_block_get_size ()" link="AdgTitleBlock.html#adg-title-block-get-size" since="1.0"></keyword>
+    <keyword type="function" name="adg_title_block_get_title ()" link="AdgTitleBlock.html#adg-title-block-get-title" since="1.0"></keyword>
+    <keyword type="function" name="adg_title_block_logo ()" link="AdgTitleBlock.html#adg-title-block-logo" since="1.0"></keyword>
+    <keyword type="function" name="adg_title_block_new ()" link="AdgTitleBlock.html#adg-title-block-new" since="1.0"></keyword>
+    <keyword type="function" name="adg_title_block_projection ()" link="AdgTitleBlock.html#adg-title-block-projection" since="1.0"></keyword>
+    <keyword type="function" name="adg_title_block_set_author ()" link="AdgTitleBlock.html#adg-title-block-set-author" since="1.0"></keyword>
+    <keyword type="function" name="adg_title_block_set_date ()" link="AdgTitleBlock.html#adg-title-block-set-date" since="1.0"></keyword>
+    <keyword type="function" name="adg_title_block_set_drawing ()" link="AdgTitleBlock.html#adg-title-block-set-drawing" since="1.0"></keyword>
+    <keyword type="function" name="adg_title_block_set_logo ()" link="AdgTitleBlock.html#adg-title-block-set-logo" since="1.0"></keyword>
+    <keyword type="function" name="adg_title_block_set_projection ()" link="AdgTitleBlock.html#adg-title-block-set-projection" since="1.0"></keyword>
+    <keyword type="function" name="adg_title_block_set_scale ()" link="AdgTitleBlock.html#adg-title-block-set-scale" since="1.0"></keyword>
+    <keyword type="function" name="adg_title_block_set_size ()" link="AdgTitleBlock.html#adg-title-block-set-size" since="1.0"></keyword>
+    <keyword type="function" name="adg_title_block_set_title ()" link="AdgTitleBlock.html#adg-title-block-set-title" since="1.0"></keyword>
+    <keyword type="property" name="The &quot;author&quot; property" link="AdgTitleBlock.html#AdgTitleBlock--author"></keyword>
+    <keyword type="property" name="The &quot;date&quot; property" link="AdgTitleBlock.html#AdgTitleBlock--date"></keyword>
+    <keyword type="property" name="The &quot;drawing&quot; property" link="AdgTitleBlock.html#AdgTitleBlock--drawing"></keyword>
+    <keyword type="property" name="The &quot;logo&quot; property" link="AdgTitleBlock.html#AdgTitleBlock--logo"></keyword>
+    <keyword type="property" name="The &quot;projection&quot; property" link="AdgTitleBlock.html#AdgTitleBlock--projection"></keyword>
+    <keyword type="property" name="The &quot;scale&quot; property" link="AdgTitleBlock.html#AdgTitleBlock--scale"></keyword>
+    <keyword type="property" name="The &quot;size&quot; property" link="AdgTitleBlock.html#AdgTitleBlock--size"></keyword>
+    <keyword type="property" name="The &quot;title&quot; property" link="AdgTitleBlock.html#AdgTitleBlock--title"></keyword>
+    <keyword type="struct" name="struct AdgDim" link="AdgDim.html#AdgDim-struct"></keyword>
+    <keyword type="struct" name="struct AdgDimClass" link="AdgDim.html#AdgDimClass" since="1.0"></keyword>
+    <keyword type="function" name="adg_dim_get_detached ()" link="AdgDim.html#adg-dim-get-detached" since="1.0"></keyword>
+    <keyword type="function" name="adg_dim_get_dim_dress ()" link="AdgDim.html#adg-dim-get-dim-dress" since="1.0"></keyword>
+    <keyword type="function" name="adg_dim_get_level ()" link="AdgDim.html#adg-dim-get-level" since="1.0"></keyword>
+    <keyword type="function" name="adg_dim_get_max ()" link="AdgDim.html#adg-dim-get-max" since="1.0"></keyword>
+    <keyword type="function" name="adg_dim_get_min ()" link="AdgDim.html#adg-dim-get-min" since="1.0"></keyword>
+    <keyword type="function" name="adg_dim_get_outside ()" link="AdgDim.html#adg-dim-get-outside" since="1.0"></keyword>
+    <keyword type="function" name="adg_dim_get_pos ()" link="AdgDim.html#adg-dim-get-pos" since="1.0"></keyword>
+    <keyword type="function" name="adg_dim_get_quote ()" link="AdgDim.html#adg-dim-get-quote" since="1.0"></keyword>
+    <keyword type="function" name="adg_dim_get_ref1 ()" link="AdgDim.html#adg-dim-get-ref1" since="1.0"></keyword>
+    <keyword type="function" name="adg_dim_get_ref2 ()" link="AdgDim.html#adg-dim-get-ref2" since="1.0"></keyword>
+    <keyword type="function" name="adg_dim_get_value ()" link="AdgDim.html#adg-dim-get-value" since="1.0"></keyword>
+    <keyword type="function" name="adg_dim_quote_angle ()" link="AdgDim.html#adg-dim-quote-angle" since="1.0"></keyword>
+    <keyword type="function" name="adg_dim_set_detached ()" link="AdgDim.html#adg-dim-set-detached" since="1.0"></keyword>
+    <keyword type="function" name="adg_dim_set_dim_dress ()" link="AdgDim.html#adg-dim-set-dim-dress" since="1.0"></keyword>
+    <keyword type="function" name="adg_dim_set_level ()" link="AdgDim.html#adg-dim-set-level" since="1.0"></keyword>
+    <keyword type="function" name="adg_dim_set_limits ()" link="AdgDim.html#adg-dim-set-limits" since="1.0"></keyword>
+    <keyword type="function" name="adg_dim_set_max ()" link="AdgDim.html#adg-dim-set-max" since="1.0"></keyword>
+    <keyword type="function" name="adg_dim_set_min ()" link="AdgDim.html#adg-dim-set-min" since="1.0"></keyword>
+    <keyword type="function" name="adg_dim_set_outside ()" link="AdgDim.html#adg-dim-set-outside" since="1.0"></keyword>
+    <keyword type="function" name="adg_dim_set_pos ()" link="AdgDim.html#adg-dim-set-pos" since="1.0"></keyword>
+    <keyword type="function" name="adg_dim_set_pos_explicit ()" link="AdgDim.html#adg-dim-set-pos-explicit" since="1.0"></keyword>
+    <keyword type="function" name="adg_dim_set_pos_from_model ()" link="AdgDim.html#adg-dim-set-pos-from-model" since="1.0"></keyword>
+    <keyword type="function" name="adg_dim_set_pos_from_pair ()" link="AdgDim.html#adg-dim-set-pos-from-pair" since="1.0"></keyword>
+    <keyword type="function" name="adg_dim_set_ref1 ()" link="AdgDim.html#adg-dim-set-ref1" since="1.0"></keyword>
+    <keyword type="function" name="adg_dim_set_ref1_explicit ()" link="AdgDim.html#adg-dim-set-ref1-explicit" since="1.0"></keyword>
+    <keyword type="function" name="adg_dim_set_ref1_from_model ()" link="AdgDim.html#adg-dim-set-ref1-from-model" since="1.0"></keyword>
+    <keyword type="function" name="adg_dim_set_ref1_from_pair ()" link="AdgDim.html#adg-dim-set-ref1-from-pair" since="1.0"></keyword>
+    <keyword type="function" name="adg_dim_set_ref2 ()" link="AdgDim.html#adg-dim-set-ref2" since="1.0"></keyword>
+    <keyword type="function" name="adg_dim_set_ref2_explicit ()" link="AdgDim.html#adg-dim-set-ref2-explicit" since="1.0"></keyword>
+    <keyword type="function" name="adg_dim_set_ref2_from_model ()" link="AdgDim.html#adg-dim-set-ref2-from-model" since="1.0"></keyword>
+    <keyword type="function" name="adg_dim_set_ref2_from_pair ()" link="AdgDim.html#adg-dim-set-ref2-from-pair" since="1.0"></keyword>
+    <keyword type="function" name="adg_dim_set_value ()" link="AdgDim.html#adg-dim-set-value" since="1.0"></keyword>
+    <keyword type="property" name="The &quot;detached&quot; property" link="AdgDim.html#AdgDim--detached"></keyword>
+    <keyword type="property" name="The &quot;dim-dress&quot; property" link="AdgDim.html#AdgDim--dim-dress"></keyword>
+    <keyword type="property" name="The &quot;level&quot; property" link="AdgDim.html#AdgDim--level"></keyword>
+    <keyword type="property" name="The &quot;max&quot; property" link="AdgDim.html#AdgDim--max"></keyword>
+    <keyword type="property" name="The &quot;min&quot; property" link="AdgDim.html#AdgDim--min"></keyword>
+    <keyword type="property" name="The &quot;outside&quot; property" link="AdgDim.html#AdgDim--outside"></keyword>
+    <keyword type="property" name="The &quot;pos&quot; property" link="AdgDim.html#AdgDim--pos"></keyword>
+    <keyword type="property" name="The &quot;ref1&quot; property" link="AdgDim.html#AdgDim--ref1"></keyword>
+    <keyword type="property" name="The &quot;ref2&quot; property" link="AdgDim.html#AdgDim--ref2"></keyword>
+    <keyword type="property" name="The &quot;value&quot; property" link="AdgDim.html#AdgDim--value"></keyword>
+    <keyword type="struct" name="struct AdgLDim" link="AdgLDim.html#AdgLDim-struct"></keyword>
+    <keyword type="struct" name="struct AdgLDimClass" link="AdgLDim.html#AdgLDimClass"></keyword>
+    <keyword type="function" name="adg_ldim_get_direction ()" link="AdgLDim.html#adg-ldim-get-direction" since="1.0"></keyword>
+    <keyword type="function" name="adg_ldim_has_extension1 ()" link="AdgLDim.html#adg-ldim-has-extension1" since="1.0"></keyword>
+    <keyword type="function" name="adg_ldim_has_extension2 ()" link="AdgLDim.html#adg-ldim-has-extension2" since="1.0"></keyword>
+    <keyword type="function" name="adg_ldim_new ()" link="AdgLDim.html#adg-ldim-new" since="1.0"></keyword>
+    <keyword type="function" name="adg_ldim_new_full ()" link="AdgLDim.html#adg-ldim-new-full" since="1.0"></keyword>
+    <keyword type="function" name="adg_ldim_new_full_explicit ()" link="AdgLDim.html#adg-ldim-new-full-explicit" since="1.0"></keyword>
+    <keyword type="function" name="adg_ldim_new_full_from_model ()" link="AdgLDim.html#adg-ldim-new-full-from-model" since="1.0"></keyword>
+    <keyword type="function" name="adg_ldim_set_direction ()" link="AdgLDim.html#adg-ldim-set-direction" since="1.0"></keyword>
+    <keyword type="function" name="adg_ldim_switch_extension1 ()" link="AdgLDim.html#adg-ldim-switch-extension1" since="1.0"></keyword>
+    <keyword type="function" name="adg_ldim_switch_extension2 ()" link="AdgLDim.html#adg-ldim-switch-extension2" since="1.0"></keyword>
+    <keyword type="property" name="The &quot;direction&quot; property" link="AdgLDim.html#AdgLDim--direction"></keyword>
+    <keyword type="property" name="The &quot;has-extension1&quot; property" link="AdgLDim.html#AdgLDim--has-extension1"></keyword>
+    <keyword type="property" name="The &quot;has-extension2&quot; property" link="AdgLDim.html#AdgLDim--has-extension2"></keyword>
+    <keyword type="struct" name="struct AdgADim" link="AdgADim.html#AdgADim-struct"></keyword>
+    <keyword type="struct" name="struct AdgADimClass" link="AdgADim.html#AdgADimClass"></keyword>
+    <keyword type="function" name="adg_adim_get_org1 ()" link="AdgADim.html#adg-adim-get-org1" since="1.0"></keyword>
+    <keyword type="function" name="adg_adim_get_org2 ()" link="AdgADim.html#adg-adim-get-org2" since="1.0"></keyword>
+    <keyword type="function" name="adg_adim_has_extension1 ()" link="AdgADim.html#adg-adim-has-extension1" since="1.0"></keyword>
+    <keyword type="function" name="adg_adim_has_extension2 ()" link="AdgADim.html#adg-adim-has-extension2" since="1.0"></keyword>
+    <keyword type="function" name="adg_adim_new ()" link="AdgADim.html#adg-adim-new" since="1.0"></keyword>
+    <keyword type="function" name="adg_adim_new_full ()" link="AdgADim.html#adg-adim-new-full" since="1.0"></keyword>
+    <keyword type="function" name="adg_adim_new_full_explicit ()" link="AdgADim.html#adg-adim-new-full-explicit" since="1.0"></keyword>
+    <keyword type="function" name="adg_adim_new_full_from_model ()" link="AdgADim.html#adg-adim-new-full-from-model" since="1.0"></keyword>
+    <keyword type="function" name="adg_adim_set_org1 ()" link="AdgADim.html#adg-adim-set-org1" since="1.0"></keyword>
+    <keyword type="function" name="adg_adim_set_org1_explicit ()" link="AdgADim.html#adg-adim-set-org1-explicit" since="1.0"></keyword>
+    <keyword type="function" name="adg_adim_set_org1_from_model ()" link="AdgADim.html#adg-adim-set-org1-from-model" since="1.0"></keyword>
+    <keyword type="function" name="adg_adim_set_org1_from_pair ()" link="AdgADim.html#adg-adim-set-org1-from-pair" since="1.0"></keyword>
+    <keyword type="function" name="adg_adim_set_org2 ()" link="AdgADim.html#adg-adim-set-org2" since="1.0"></keyword>
+    <keyword type="function" name="adg_adim_set_org2_explicit ()" link="AdgADim.html#adg-adim-set-org2-explicit" since="1.0"></keyword>
+    <keyword type="function" name="adg_adim_set_org2_from_model ()" link="AdgADim.html#adg-adim-set-org2-from-model" since="1.0"></keyword>
+    <keyword type="function" name="adg_adim_set_org2_from_pair ()" link="AdgADim.html#adg-adim-set-org2-from-pair" since="1.0"></keyword>
+    <keyword type="function" name="adg_adim_switch_extension1 ()" link="AdgADim.html#adg-adim-switch-extension1" since="1.0"></keyword>
+    <keyword type="function" name="adg_adim_switch_extension2 ()" link="AdgADim.html#adg-adim-switch-extension2" since="1.0"></keyword>
+    <keyword type="property" name="The &quot;has-extension1&quot; property" link="AdgADim.html#AdgADim--has-extension1"></keyword>
+    <keyword type="property" name="The &quot;has-extension2&quot; property" link="AdgADim.html#AdgADim--has-extension2"></keyword>
+    <keyword type="property" name="The &quot;org1&quot; property" link="AdgADim.html#AdgADim--org1"></keyword>
+    <keyword type="property" name="The &quot;org2&quot; property" link="AdgADim.html#AdgADim--org2"></keyword>
+    <keyword type="property" name="The &quot;value&quot; property" link="AdgADim.html#AdgADim--value"></keyword>
+    <keyword type="struct" name="struct AdgRDim" link="AdgRDim.html#AdgRDim-struct"></keyword>
+    <keyword type="struct" name="struct AdgRDimClass" link="AdgRDim.html#AdgRDimClass"></keyword>
+    <keyword type="function" name="adg_rdim_new ()" link="AdgRDim.html#adg-rdim-new" since="1.0"></keyword>
+    <keyword type="function" name="adg_rdim_new_full ()" link="AdgRDim.html#adg-rdim-new-full" since="1.0"></keyword>
+    <keyword type="function" name="adg_rdim_new_full_explicit ()" link="AdgRDim.html#adg-rdim-new-full-explicit" since="1.0"></keyword>
+    <keyword type="function" name="adg_rdim_new_full_from_model ()" link="AdgRDim.html#adg-rdim-new-full-from-model" since="1.0"></keyword>
+    <keyword type="property" name="The &quot;value&quot; property" link="AdgRDim.html#AdgRDim--value"></keyword>
+    <keyword type="struct" name="struct AdgMarker" link="AdgMarker.html#AdgMarker-struct"></keyword>
+    <keyword type="struct" name="struct AdgMarkerClass" link="AdgMarker.html#AdgMarkerClass" since="1.0"></keyword>
+    <keyword type="function" name="adg_marker_backup_segment ()" link="AdgMarker.html#adg-marker-backup-segment" since="1.0"></keyword>
+    <keyword type="function" name="adg_marker_get_backup_segment ()" link="AdgMarker.html#adg-marker-get-backup-segment" since="1.0"></keyword>
+    <keyword type="function" name="adg_marker_get_model ()" link="AdgMarker.html#adg-marker-get-model" since="1.0"></keyword>
+    <keyword type="function" name="adg_marker_get_n_segment ()" link="AdgMarker.html#adg-marker-get-n-segment" since="1.0"></keyword>
+    <keyword type="function" name="adg_marker_get_pos ()" link="AdgMarker.html#adg-marker-get-pos" since="1.0"></keyword>
+    <keyword type="function" name="adg_marker_get_segment ()" link="AdgMarker.html#adg-marker-get-segment" since="1.0"></keyword>
+    <keyword type="function" name="adg_marker_get_size ()" link="AdgMarker.html#adg-marker-get-size" since="1.0"></keyword>
+    <keyword type="function" name="adg_marker_get_trail ()" link="AdgMarker.html#adg-marker-get-trail" since="1.0"></keyword>
+    <keyword type="function" name="adg_marker_model ()" link="AdgMarker.html#adg-marker-model" since="1.0"></keyword>
+    <keyword type="function" name="adg_marker_set_model ()" link="AdgMarker.html#adg-marker-set-model" since="1.0"></keyword>
+    <keyword type="function" name="adg_marker_set_n_segment ()" link="AdgMarker.html#adg-marker-set-n-segment" since="1.0"></keyword>
+    <keyword type="function" name="adg_marker_set_pos ()" link="AdgMarker.html#adg-marker-set-pos" since="1.0"></keyword>
+    <keyword type="function" name="adg_marker_set_segment ()" link="AdgMarker.html#adg-marker-set-segment" since="1.0"></keyword>
+    <keyword type="function" name="adg_marker_set_size ()" link="AdgMarker.html#adg-marker-set-size" since="1.0"></keyword>
+    <keyword type="function" name="adg_marker_set_trail ()" link="AdgMarker.html#adg-marker-set-trail" since="1.0"></keyword>
+    <keyword type="property" name="The &quot;model&quot; property" link="AdgMarker.html#AdgMarker--model"></keyword>
+    <keyword type="property" name="The &quot;n-segment&quot; property" link="AdgMarker.html#AdgMarker--n-segment"></keyword>
+    <keyword type="property" name="The &quot;pos&quot; property" link="AdgMarker.html#AdgMarker--pos"></keyword>
+    <keyword type="property" name="The &quot;size&quot; property" link="AdgMarker.html#AdgMarker--size"></keyword>
+    <keyword type="property" name="The &quot;trail&quot; property" link="AdgMarker.html#AdgMarker--trail"></keyword>
+    <keyword type="struct" name="struct AdgArrow" link="AdgArrow.html#AdgArrow-struct"></keyword>
+    <keyword type="struct" name="struct AdgArrowClass" link="AdgArrow.html#AdgArrowClass"></keyword>
+    <keyword type="function" name="adg_arrow_get_angle ()" link="AdgArrow.html#adg-arrow-get-angle" since="1.0"></keyword>
+    <keyword type="function" name="adg_arrow_new ()" link="AdgArrow.html#adg-arrow-new" since="1.0"></keyword>
+    <keyword type="function" name="adg_arrow_new_with_trail ()" link="AdgArrow.html#adg-arrow-new-with-trail" since="1.0"></keyword>
+    <keyword type="function" name="adg_arrow_set_angle ()" link="AdgArrow.html#adg-arrow-set-angle" since="1.0"></keyword>
+    <keyword type="property" name="The &quot;angle&quot; property" link="AdgArrow.html#AdgArrow--angle"></keyword>
+    <keyword type="macro" name="ADG_VALUE_HOLDS_DRESS()" link="Dresses.html#ADG-VALUE-HOLDS-DRESS:CAPS" since="1.0"></keyword>
+    <keyword type="function" name="adg_dress_are_related ()" link="Dresses.html#adg-dress-are-related" since="1.0"></keyword>
+    <keyword type="function" name="adg_dress_from_name ()" link="Dresses.html#adg-dress-from-name" since="1.0"></keyword>
+    <keyword type="function" name="adg_dress_get_ancestor_type ()" link="Dresses.html#adg-dress-get-ancestor-type" since="1.0"></keyword>
+    <keyword type="function" name="adg_dress_get_fallback ()" link="Dresses.html#adg-dress-get-fallback" since="1.0"></keyword>
+    <keyword type="function" name="adg_dress_get_name ()" link="Dresses.html#adg-dress-get-name" since="1.0"></keyword>
+    <keyword type="function" name="adg_dress_set ()" link="Dresses.html#adg-dress-set" since="1.0"></keyword>
+    <keyword type="function" name="adg_dress_set_fallback ()" link="Dresses.html#adg-dress-set-fallback" since="1.0"></keyword>
+    <keyword type="function" name="adg_dress_style_is_compatible ()" link="Dresses.html#adg-dress-style-is-compatible" since="1.0"></keyword>
+    <keyword type="macro" name="ADG_PARAM_SPEC_DRESS()" link="AdgParamDress.html#ADG-PARAM-SPEC-DRESS:CAPS"></keyword>
+    <keyword type="function" name="adg_param_spec_dress ()" link="AdgParamDress.html#adg-param-spec-dress" since="1.0"></keyword>
+    <keyword type="struct" name="AdgDash" link="AdgDash.html#AdgDash-struct"></keyword>
+    <keyword type="function" name="adg_dash_append_dash ()" link="AdgDash.html#adg-dash-append-dash" since="1.0"></keyword>
+    <keyword type="function" name="adg_dash_append_dashes ()" link="AdgDash.html#adg-dash-append-dashes" since="1.0"></keyword>
+    <keyword type="function" name="adg_dash_append_dashes_array ()" link="AdgDash.html#adg-dash-append-dashes-array" since="1.0"></keyword>
+    <keyword type="function" name="adg_dash_append_dashes_valist ()" link="AdgDash.html#adg-dash-append-dashes-valist" since="1.0"></keyword>
+    <keyword type="function" name="adg_dash_clear_dashes ()" link="AdgDash.html#adg-dash-clear-dashes" since="1.0"></keyword>
+    <keyword type="function" name="adg_dash_destroy ()" link="AdgDash.html#adg-dash-destroy" since="1.0"></keyword>
+    <keyword type="function" name="adg_dash_dup ()" link="AdgDash.html#adg-dash-dup" since="1.0"></keyword>
+    <keyword type="function" name="adg_dash_get_dashes ()" link="AdgDash.html#adg-dash-get-dashes" since="1.0"></keyword>
+    <keyword type="function" name="adg_dash_get_num_dashes ()" link="AdgDash.html#adg-dash-get-num-dashes" since="1.0"></keyword>
+    <keyword type="function" name="adg_dash_get_offset ()" link="AdgDash.html#adg-dash-get-offset" since="1.0"></keyword>
+    <keyword type="function" name="adg_dash_new ()" link="AdgDash.html#adg-dash-new" since="1.0"></keyword>
+    <keyword type="function" name="adg_dash_new_with_dashes ()" link="AdgDash.html#adg-dash-new-with-dashes" since="1.0"></keyword>
+    <keyword type="function" name="adg_dash_set_offset ()" link="AdgDash.html#adg-dash-set-offset" since="1.0"></keyword>
+    <keyword type="struct" name="struct AdgStyle" link="AdgStyle.html#AdgStyle-struct"></keyword>
+    <keyword type="struct" name="struct AdgStyleClass" link="AdgStyle.html#AdgStyleClass" since="1.0"></keyword>
+    <keyword type="function" name="adg_style_apply ()" link="AdgStyle.html#adg-style-apply" since="1.0"></keyword>
+    <keyword type="function" name="adg_style_invalidate ()" link="AdgStyle.html#adg-style-invalidate" since="1.0"></keyword>
+    <keyword type="signal" name="The &quot;apply&quot; signal" link="AdgStyle.html#AdgStyle-apply"></keyword>
+    <keyword type="signal" name="The &quot;invalidate&quot; signal" link="AdgStyle.html#AdgStyle-invalidate"></keyword>
+    <keyword type="struct" name="struct AdgColorStyle" link="AdgColorStyle.html#AdgColorStyle-struct"></keyword>
+    <keyword type="struct" name="struct AdgColorStyleClass" link="AdgColorStyle.html#AdgColorStyleClass"></keyword>
+    <keyword type="function" name="adg_color_style_get_alpha ()" link="AdgColorStyle.html#adg-color-style-get-alpha" since="1.0"></keyword>
+    <keyword type="function" name="adg_color_style_get_blue ()" link="AdgColorStyle.html#adg-color-style-get-blue" since="1.0"></keyword>
+    <keyword type="function" name="adg_color_style_get_green ()" link="AdgColorStyle.html#adg-color-style-get-green" since="1.0"></keyword>
+    <keyword type="function" name="adg_color_style_get_red ()" link="AdgColorStyle.html#adg-color-style-get-red" since="1.0"></keyword>
+    <keyword type="function" name="adg_color_style_new ()" link="AdgColorStyle.html#adg-color-style-new" since="1.0"></keyword>
+    <keyword type="function" name="adg_color_style_put_rgb ()" link="AdgColorStyle.html#adg-color-style-put-rgb" since="1.0"></keyword>
+    <keyword type="function" name="adg_color_style_set_alpha ()" link="AdgColorStyle.html#adg-color-style-set-alpha" since="1.0"></keyword>
+    <keyword type="function" name="adg_color_style_set_blue ()" link="AdgColorStyle.html#adg-color-style-set-blue" since="1.0"></keyword>
+    <keyword type="function" name="adg_color_style_set_green ()" link="AdgColorStyle.html#adg-color-style-set-green" since="1.0"></keyword>
+    <keyword type="function" name="adg_color_style_set_red ()" link="AdgColorStyle.html#adg-color-style-set-red" since="1.0"></keyword>
+    <keyword type="function" name="adg_color_style_set_rgb ()" link="AdgColorStyle.html#adg-color-style-set-rgb" since="1.0"></keyword>
+    <keyword type="property" name="The &quot;alpha&quot; property" link="AdgColorStyle.html#AdgColorStyle--alpha"></keyword>
+    <keyword type="property" name="The &quot;blue&quot; property" link="AdgColorStyle.html#AdgColorStyle--blue"></keyword>
+    <keyword type="property" name="The &quot;green&quot; property" link="AdgColorStyle.html#AdgColorStyle--green"></keyword>
+    <keyword type="property" name="The &quot;red&quot; property" link="AdgColorStyle.html#AdgColorStyle--red"></keyword>
+    <keyword type="struct" name="struct AdgLineStyle" link="AdgLineStyle.html#AdgLineStyle-struct"></keyword>
+    <keyword type="struct" name="struct AdgLineStyleClass" link="AdgLineStyle.html#AdgLineStyleClass"></keyword>
+    <keyword type="function" name="adg_line_style_get_antialias ()" link="AdgLineStyle.html#adg-line-style-get-antialias" since="1.0"></keyword>
+    <keyword type="function" name="adg_line_style_get_cap ()" link="AdgLineStyle.html#adg-line-style-get-cap" since="1.0"></keyword>
+    <keyword type="function" name="adg_line_style_get_color_dress ()" link="AdgLineStyle.html#adg-line-style-get-color-dress" since="1.0"></keyword>
+    <keyword type="function" name="adg_line_style_get_dash ()" link="AdgLineStyle.html#adg-line-style-get-dash" since="1.0"></keyword>
+    <keyword type="function" name="adg_line_style_get_join ()" link="AdgLineStyle.html#adg-line-style-get-join" since="1.0"></keyword>
+    <keyword type="function" name="adg_line_style_get_miter_limit ()" link="AdgLineStyle.html#adg-line-style-get-miter-limit" since="1.0"></keyword>
+    <keyword type="function" name="adg_line_style_get_width ()" link="AdgLineStyle.html#adg-line-style-get-width" since="1.0"></keyword>
+    <keyword type="function" name="adg_line_style_new ()" link="AdgLineStyle.html#adg-line-style-new" since="1.0"></keyword>
+    <keyword type="function" name="adg_line_style_set_antialias ()" link="AdgLineStyle.html#adg-line-style-set-antialias" since="1.0"></keyword>
+    <keyword type="function" name="adg_line_style_set_cap ()" link="AdgLineStyle.html#adg-line-style-set-cap" since="1.0"></keyword>
+    <keyword type="function" name="adg_line_style_set_color_dress ()" link="AdgLineStyle.html#adg-line-style-set-color-dress" since="1.0"></keyword>
+    <keyword type="function" name="adg_line_style_set_dash ()" link="AdgLineStyle.html#adg-line-style-set-dash" since="1.0"></keyword>
+    <keyword type="function" name="adg_line_style_set_join ()" link="AdgLineStyle.html#adg-line-style-set-join" since="1.0"></keyword>
+    <keyword type="function" name="adg_line_style_set_miter_limit ()" link="AdgLineStyle.html#adg-line-style-set-miter-limit" since="1.0"></keyword>
+    <keyword type="function" name="adg_line_style_set_width ()" link="AdgLineStyle.html#adg-line-style-set-width" since="1.0"></keyword>
+    <keyword type="property" name="The &quot;antialias&quot; property" link="AdgLineStyle.html#AdgLineStyle--antialias"></keyword>
+    <keyword type="property" name="The &quot;cap&quot; property" link="AdgLineStyle.html#AdgLineStyle--cap"></keyword>
+    <keyword type="property" name="The &quot;color-dress&quot; property" link="AdgLineStyle.html#AdgLineStyle--color-dress"></keyword>
+    <keyword type="property" name="The &quot;dash&quot; property" link="AdgLineStyle.html#AdgLineStyle--dash"></keyword>
+    <keyword type="property" name="The &quot;join&quot; property" link="AdgLineStyle.html#AdgLineStyle--join"></keyword>
+    <keyword type="property" name="The &quot;miter-limit&quot; property" link="AdgLineStyle.html#AdgLineStyle--miter-limit"></keyword>
+    <keyword type="property" name="The &quot;width&quot; property" link="AdgLineStyle.html#AdgLineStyle--width"></keyword>
+    <keyword type="struct" name="struct AdgFillStyle" link="AdgFillStyle.html#AdgFillStyle-struct"></keyword>
+    <keyword type="struct" name="struct AdgFillStyleClass" link="AdgFillStyle.html#AdgFillStyleClass" since="1.0"></keyword>
+    <keyword type="function" name="adg_fill_style_get_extents ()" link="AdgFillStyle.html#adg-fill-style-get-extents" since="1.0"></keyword>
+    <keyword type="function" name="adg_fill_style_get_pattern ()" link="AdgFillStyle.html#adg-fill-style-get-pattern" since="1.0"></keyword>
+    <keyword type="function" name="adg_fill_style_set_extents ()" link="AdgFillStyle.html#adg-fill-style-set-extents" since="1.0"></keyword>
+    <keyword type="function" name="adg_fill_style_set_pattern ()" link="AdgFillStyle.html#adg-fill-style-set-pattern" since="1.0"></keyword>
+    <keyword type="property" name="The &quot;pattern&quot; property" link="AdgFillStyle.html#AdgFillStyle--pattern"></keyword>
+    <keyword type="struct" name="struct AdgRuledFill" link="AdgRuledFill.html#AdgRuledFill-struct"></keyword>
+    <keyword type="struct" name="struct AdgRuledFillClass" link="AdgRuledFill.html#AdgRuledFillClass"></keyword>
+    <keyword type="function" name="adg_ruled_fill_get_angle ()" link="AdgRuledFill.html#adg-ruled-fill-get-angle" since="1.0"></keyword>
+    <keyword type="function" name="adg_ruled_fill_get_line_dress ()" link="AdgRuledFill.html#adg-ruled-fill-get-line-dress" since="1.0"></keyword>
+    <keyword type="function" name="adg_ruled_fill_get_spacing ()" link="AdgRuledFill.html#adg-ruled-fill-get-spacing" since="1.0"></keyword>
+    <keyword type="function" name="adg_ruled_fill_new ()" link="AdgRuledFill.html#adg-ruled-fill-new" since="1.0"></keyword>
+    <keyword type="function" name="adg_ruled_fill_set_angle ()" link="AdgRuledFill.html#adg-ruled-fill-set-angle" since="1.0"></keyword>
+    <keyword type="function" name="adg_ruled_fill_set_line_dress ()" link="AdgRuledFill.html#adg-ruled-fill-set-line-dress" since="1.0"></keyword>
+    <keyword type="function" name="adg_ruled_fill_set_spacing ()" link="AdgRuledFill.html#adg-ruled-fill-set-spacing" since="1.0"></keyword>
+    <keyword type="property" name="The &quot;angle&quot; property" link="AdgRuledFill.html#AdgRuledFill--angle"></keyword>
+    <keyword type="property" name="The &quot;line-dress&quot; property" link="AdgRuledFill.html#AdgRuledFill--line-dress"></keyword>
+    <keyword type="property" name="The &quot;spacing&quot; property" link="AdgRuledFill.html#AdgRuledFill--spacing"></keyword>
+    <keyword type="struct" name="struct AdgFontStyle" link="AdgFontStyle.html#AdgFontStyle-struct"></keyword>
+    <keyword type="struct" name="struct AdgFontStyleClass" link="AdgFontStyle.html#AdgFontStyleClass"></keyword>
+    <keyword type="function" name="adg_font_style_get_antialias ()" link="AdgFontStyle.html#adg-font-style-get-antialias" since="1.0"></keyword>
+    <keyword type="function" name="adg_font_style_get_color_dress ()" link="AdgFontStyle.html#adg-font-style-get-color-dress" since="1.0"></keyword>
+    <keyword type="function" name="adg_font_style_get_family ()" link="AdgFontStyle.html#adg-font-style-get-family" since="1.0"></keyword>
+    <keyword type="function" name="adg_font_style_get_hint_metrics ()" link="AdgFontStyle.html#adg-font-style-get-hint-metrics" since="1.0"></keyword>
+    <keyword type="function" name="adg_font_style_get_hint_style ()" link="AdgFontStyle.html#adg-font-style-get-hint-style" since="1.0"></keyword>
+    <keyword type="function" name="adg_font_style_get_scaled_font ()" link="AdgFontStyle.html#adg-font-style-get-scaled-font" since="1.0"></keyword>
+    <keyword type="function" name="adg_font_style_get_size ()" link="AdgFontStyle.html#adg-font-style-get-size" since="1.0"></keyword>
+    <keyword type="function" name="adg_font_style_get_slant ()" link="AdgFontStyle.html#adg-font-style-get-slant" since="1.0"></keyword>
+    <keyword type="function" name="adg_font_style_get_subpixel_order ()" link="AdgFontStyle.html#adg-font-style-get-subpixel-order" since="1.0"></keyword>
+    <keyword type="function" name="adg_font_style_get_weight ()" link="AdgFontStyle.html#adg-font-style-get-weight" since="1.0"></keyword>
+    <keyword type="function" name="adg_font_style_new ()" link="AdgFontStyle.html#adg-font-style-new" since="1.0"></keyword>
+    <keyword type="function" name="adg_font_style_new_options ()" link="AdgFontStyle.html#adg-font-style-new-options" since="1.0"></keyword>
+    <keyword type="function" name="adg_font_style_set_antialias ()" link="AdgFontStyle.html#adg-font-style-set-antialias" since="1.0"></keyword>
+    <keyword type="function" name="adg_font_style_set_color_dress ()" link="AdgFontStyle.html#adg-font-style-set-color-dress" since="1.0"></keyword>
+    <keyword type="function" name="adg_font_style_set_family ()" link="AdgFontStyle.html#adg-font-style-set-family" since="1.0"></keyword>
+    <keyword type="function" name="adg_font_style_set_hint_metrics ()" link="AdgFontStyle.html#adg-font-style-set-hint-metrics" since="1.0"></keyword>
+    <keyword type="function" name="adg_font_style_set_hint_style ()" link="AdgFontStyle.html#adg-font-style-set-hint-style" since="1.0"></keyword>
+    <keyword type="function" name="adg_font_style_set_size ()" link="AdgFontStyle.html#adg-font-style-set-size" since="1.0"></keyword>
+    <keyword type="function" name="adg_font_style_set_slant ()" link="AdgFontStyle.html#adg-font-style-set-slant" since="1.0"></keyword>
+    <keyword type="function" name="adg_font_style_set_subpixel_order ()" link="AdgFontStyle.html#adg-font-style-set-subpixel-order" since="1.0"></keyword>
+    <keyword type="function" name="adg_font_style_set_weight ()" link="AdgFontStyle.html#adg-font-style-set-weight" since="1.0"></keyword>
+    <keyword type="property" name="The &quot;antialias&quot; property" link="AdgFontStyle.html#AdgFontStyle--antialias"></keyword>
+    <keyword type="property" name="The &quot;color-dress&quot; property" link="AdgFontStyle.html#AdgFontStyle--color-dress"></keyword>
+    <keyword type="property" name="The &quot;family&quot; property" link="AdgFontStyle.html#AdgFontStyle--family"></keyword>
+    <keyword type="property" name="The &quot;hint-metrics&quot; property" link="AdgFontStyle.html#AdgFontStyle--hint-metrics"></keyword>
+    <keyword type="property" name="The &quot;hint-style&quot; property" link="AdgFontStyle.html#AdgFontStyle--hint-style"></keyword>
+    <keyword type="property" name="The &quot;size&quot; property" link="AdgFontStyle.html#AdgFontStyle--size"></keyword>
+    <keyword type="property" name="The &quot;slant&quot; property" link="AdgFontStyle.html#AdgFontStyle--slant"></keyword>
+    <keyword type="property" name="The &quot;subpixel-order&quot; property" link="AdgFontStyle.html#AdgFontStyle--subpixel-order"></keyword>
+    <keyword type="property" name="The &quot;weight&quot; property" link="AdgFontStyle.html#AdgFontStyle--weight"></keyword>
+    <keyword type="struct" name="struct AdgPangoStyle" link="AdgPangoStyle.html#AdgPangoStyle-struct"></keyword>
+    <keyword type="struct" name="struct AdgPangoStyleClass" link="AdgPangoStyle.html#AdgPangoStyleClass"></keyword>
+    <keyword type="function" name="adg_pango_style_get_description ()" link="AdgPangoStyle.html#adg-pango-style-get-description" since="1.0"></keyword>
+    <keyword type="function" name="adg_pango_style_new ()" link="AdgPangoStyle.html#adg-pango-style-new" since="1.0"></keyword>
+    <keyword type="struct" name="struct AdgDimStyle" link="AdgDimStyle.html#AdgDimStyle-struct"></keyword>
+    <keyword type="struct" name="struct AdgDimStyleClass" link="AdgDimStyle.html#AdgDimStyleClass"></keyword>
+    <keyword type="function" name="adg_dim_style_get_baseline_spacing ()" link="AdgDimStyle.html#adg-dim-style-get-baseline-spacing" since="1.0"></keyword>
+    <keyword type="function" name="adg_dim_style_get_beyond ()" link="AdgDimStyle.html#adg-dim-style-get-beyond" since="1.0"></keyword>
+    <keyword type="function" name="adg_dim_style_get_color_dress ()" link="AdgDimStyle.html#adg-dim-style-get-color-dress" since="1.0"></keyword>
+    <keyword type="function" name="adg_dim_style_get_from_offset ()" link="AdgDimStyle.html#adg-dim-style-get-from-offset" since="1.0"></keyword>
+    <keyword type="function" name="adg_dim_style_get_limits_shift ()" link="AdgDimStyle.html#adg-dim-style-get-limits-shift" since="1.0"></keyword>
+    <keyword type="function" name="adg_dim_style_get_limits_spacing ()" link="AdgDimStyle.html#adg-dim-style-get-limits-spacing" since="1.0"></keyword>
+    <keyword type="function" name="adg_dim_style_get_line_dress ()" link="AdgDimStyle.html#adg-dim-style-get-line-dress" since="1.0"></keyword>
+    <keyword type="function" name="adg_dim_style_get_max_dress ()" link="AdgDimStyle.html#adg-dim-style-get-max-dress" since="1.0"></keyword>
+    <keyword type="function" name="adg_dim_style_get_min_dress ()" link="AdgDimStyle.html#adg-dim-style-get-min-dress" since="1.0"></keyword>
+    <keyword type="function" name="adg_dim_style_get_number_format ()" link="AdgDimStyle.html#adg-dim-style-get-number-format" since="1.0"></keyword>
+    <keyword type="function" name="adg_dim_style_get_number_tag ()" link="AdgDimStyle.html#adg-dim-style-get-number-tag" since="1.0"></keyword>
+    <keyword type="function" name="adg_dim_style_get_quote_shift ()" link="AdgDimStyle.html#adg-dim-style-get-quote-shift" since="1.0"></keyword>
+    <keyword type="function" name="adg_dim_style_get_to_offset ()" link="AdgDimStyle.html#adg-dim-style-get-to-offset" since="1.0"></keyword>
+    <keyword type="function" name="adg_dim_style_get_value_dress ()" link="AdgDimStyle.html#adg-dim-style-get-value-dress" since="1.0"></keyword>
+    <keyword type="function" name="adg_dim_style_marker1_new ()" link="AdgDimStyle.html#adg-dim-style-marker1-new" since="1.0"></keyword>
+    <keyword type="function" name="adg_dim_style_marker2_new ()" link="AdgDimStyle.html#adg-dim-style-marker2-new" since="1.0"></keyword>
+    <keyword type="function" name="adg_dim_style_new ()" link="AdgDimStyle.html#adg-dim-style-new" since="1.0"></keyword>
+    <keyword type="function" name="adg_dim_style_set_baseline_spacing ()" link="AdgDimStyle.html#adg-dim-style-set-baseline-spacing" since="1.0"></keyword>
+    <keyword type="function" name="adg_dim_style_set_beyond ()" link="AdgDimStyle.html#adg-dim-style-set-beyond" since="1.0"></keyword>
+    <keyword type="function" name="adg_dim_style_set_color_dress ()" link="AdgDimStyle.html#adg-dim-style-set-color-dress" since="1.0"></keyword>
+    <keyword type="function" name="adg_dim_style_set_from_offset ()" link="AdgDimStyle.html#adg-dim-style-set-from-offset" since="1.0"></keyword>
+    <keyword type="function" name="adg_dim_style_set_limits_shift ()" link="AdgDimStyle.html#adg-dim-style-set-limits-shift" since="1.0"></keyword>
+    <keyword type="function" name="adg_dim_style_set_limits_spacing ()" link="AdgDimStyle.html#adg-dim-style-set-limits-spacing" since="1.0"></keyword>
+    <keyword type="function" name="adg_dim_style_set_line_dress ()" link="AdgDimStyle.html#adg-dim-style-set-line-dress" since="1.0"></keyword>
+    <keyword type="function" name="adg_dim_style_set_marker1 ()" link="AdgDimStyle.html#adg-dim-style-set-marker1" since="1.0"></keyword>
+    <keyword type="function" name="adg_dim_style_set_marker2 ()" link="AdgDimStyle.html#adg-dim-style-set-marker2" since="1.0"></keyword>
+    <keyword type="function" name="adg_dim_style_set_max_dress ()" link="AdgDimStyle.html#adg-dim-style-set-max-dress" since="1.0"></keyword>
+    <keyword type="function" name="adg_dim_style_set_min_dress ()" link="AdgDimStyle.html#adg-dim-style-set-min-dress" since="1.0"></keyword>
+    <keyword type="function" name="adg_dim_style_set_number_format ()" link="AdgDimStyle.html#adg-dim-style-set-number-format" since="1.0"></keyword>
+    <keyword type="function" name="adg_dim_style_set_number_tag ()" link="AdgDimStyle.html#adg-dim-style-set-number-tag" since="1.0"></keyword>
+    <keyword type="function" name="adg_dim_style_set_quote_shift ()" link="AdgDimStyle.html#adg-dim-style-set-quote-shift" since="1.0"></keyword>
+    <keyword type="function" name="adg_dim_style_set_to_offset ()" link="AdgDimStyle.html#adg-dim-style-set-to-offset" since="1.0"></keyword>
+    <keyword type="function" name="adg_dim_style_set_value_dress ()" link="AdgDimStyle.html#adg-dim-style-set-value-dress" since="1.0"></keyword>
+    <keyword type="property" name="The &quot;baseline-spacing&quot; property" link="AdgDimStyle.html#AdgDimStyle--baseline-spacing"></keyword>
+    <keyword type="property" name="The &quot;beyond&quot; property" link="AdgDimStyle.html#AdgDimStyle--beyond"></keyword>
+    <keyword type="property" name="The &quot;color-dress&quot; property" link="AdgDimStyle.html#AdgDimStyle--color-dress"></keyword>
+    <keyword type="property" name="The &quot;from-offset&quot; property" link="AdgDimStyle.html#AdgDimStyle--from-offset"></keyword>
+    <keyword type="property" name="The &quot;limits-shift&quot; property" link="AdgDimStyle.html#AdgDimStyle--limits-shift"></keyword>
+    <keyword type="property" name="The &quot;limits-spacing&quot; property" link="AdgDimStyle.html#AdgDimStyle--limits-spacing"></keyword>
+    <keyword type="property" name="The &quot;line-dress&quot; property" link="AdgDimStyle.html#AdgDimStyle--line-dress"></keyword>
+    <keyword type="property" name="The &quot;marker1&quot; property" link="AdgDimStyle.html#AdgDimStyle--marker1"></keyword>
+    <keyword type="property" name="The &quot;marker2&quot; property" link="AdgDimStyle.html#AdgDimStyle--marker2"></keyword>
+    <keyword type="property" name="The &quot;max-dress&quot; property" link="AdgDimStyle.html#AdgDimStyle--max-dress"></keyword>
+    <keyword type="property" name="The &quot;min-dress&quot; property" link="AdgDimStyle.html#AdgDimStyle--min-dress"></keyword>
+    <keyword type="property" name="The &quot;number-format&quot; property" link="AdgDimStyle.html#AdgDimStyle--number-format"></keyword>
+    <keyword type="property" name="The &quot;number-tag&quot; property" link="AdgDimStyle.html#AdgDimStyle--number-tag"></keyword>
+    <keyword type="property" name="The &quot;quote-shift&quot; property" link="AdgDimStyle.html#AdgDimStyle--quote-shift"></keyword>
+    <keyword type="property" name="The &quot;to-offset&quot; property" link="AdgDimStyle.html#AdgDimStyle--to-offset"></keyword>
+    <keyword type="property" name="The &quot;value-dress&quot; property" link="AdgDimStyle.html#AdgDimStyle--value-dress"></keyword>
+    <keyword type="struct" name="struct AdgTableStyle" link="AdgTableStyle.html#AdgTableStyle-struct"></keyword>
+    <keyword type="struct" name="struct AdgTableStyleClass" link="AdgTableStyle.html#AdgTableStyleClass"></keyword>
+    <keyword type="function" name="adg_table_style_get_cell_padding ()" link="AdgTableStyle.html#adg-table-style-get-cell-padding" since="1.0"></keyword>
+    <keyword type="function" name="adg_table_style_get_cell_spacing ()" link="AdgTableStyle.html#adg-table-style-get-cell-spacing" since="1.0"></keyword>
+    <keyword type="function" name="adg_table_style_get_color_dress ()" link="AdgTableStyle.html#adg-table-style-get-color-dress" since="1.0"></keyword>
+    <keyword type="function" name="adg_table_style_get_frame_dress ()" link="AdgTableStyle.html#adg-table-style-get-frame-dress" since="1.0"></keyword>
+    <keyword type="function" name="adg_table_style_get_grid_dress ()" link="AdgTableStyle.html#adg-table-style-get-grid-dress" since="1.0"></keyword>
+    <keyword type="function" name="adg_table_style_get_row_height ()" link="AdgTableStyle.html#adg-table-style-get-row-height" since="1.0"></keyword>
+    <keyword type="function" name="adg_table_style_get_title_dress ()" link="AdgTableStyle.html#adg-table-style-get-title-dress" since="1.0"></keyword>
+    <keyword type="function" name="adg_table_style_get_value_dress ()" link="AdgTableStyle.html#adg-table-style-get-value-dress" since="1.0"></keyword>
+    <keyword type="function" name="adg_table_style_new ()" link="AdgTableStyle.html#adg-table-style-new" since="1.0"></keyword>
+    <keyword type="function" name="adg_table_style_set_cell_padding ()" link="AdgTableStyle.html#adg-table-style-set-cell-padding" since="1.0"></keyword>
+    <keyword type="function" name="adg_table_style_set_cell_spacing ()" link="AdgTableStyle.html#adg-table-style-set-cell-spacing" since="1.0"></keyword>
+    <keyword type="function" name="adg_table_style_set_color_dress ()" link="AdgTableStyle.html#adg-table-style-set-color-dress" since="1.0"></keyword>
+    <keyword type="function" name="adg_table_style_set_frame_dress ()" link="AdgTableStyle.html#adg-table-style-set-frame-dress" since="1.0"></keyword>
+    <keyword type="function" name="adg_table_style_set_grid_dress ()" link="AdgTableStyle.html#adg-table-style-set-grid-dress" since="1.0"></keyword>
+    <keyword type="function" name="adg_table_style_set_row_height ()" link="AdgTableStyle.html#adg-table-style-set-row-height" since="1.0"></keyword>
+    <keyword type="function" name="adg_table_style_set_title_dress ()" link="AdgTableStyle.html#adg-table-style-set-title-dress" since="1.0"></keyword>
+    <keyword type="function" name="adg_table_style_set_value_dress ()" link="AdgTableStyle.html#adg-table-style-set-value-dress" since="1.0"></keyword>
+    <keyword type="property" name="The &quot;cell-padding&quot; property" link="AdgTableStyle.html#AdgTableStyle--cell-padding"></keyword>
+    <keyword type="property" name="The &quot;cell-spacing&quot; property" link="AdgTableStyle.html#AdgTableStyle--cell-spacing"></keyword>
+    <keyword type="property" name="The &quot;color-dress&quot; property" link="AdgTableStyle.html#AdgTableStyle--color-dress"></keyword>
+    <keyword type="property" name="The &quot;frame-dress&quot; property" link="AdgTableStyle.html#AdgTableStyle--frame-dress"></keyword>
+    <keyword type="property" name="The &quot;grid-dress&quot; property" link="AdgTableStyle.html#AdgTableStyle--grid-dress"></keyword>
+    <keyword type="property" name="The &quot;row-height&quot; property" link="AdgTableStyle.html#AdgTableStyle--row-height"></keyword>
+    <keyword type="property" name="The &quot;title-dress&quot; property" link="AdgTableStyle.html#AdgTableStyle--title-dress"></keyword>
+    <keyword type="property" name="The &quot;value-dress&quot; property" link="AdgTableStyle.html#AdgTableStyle--value-dress"></keyword>
+    <keyword type="macro" name="ADG_GTK_MODIFIERS" link="gtk-utilities.html#ADG-GTK-MODIFIERS:CAPS" since="1.0"></keyword>
+    <keyword type="function" name="adg_gtk_toggle_button_sensitivize ()" link="gtk-utilities.html#adg-gtk-toggle-button-sensitivize" since="1.0"></keyword>
+    <keyword type="function" name="adg_gtk_use_default_icons ()" link="gtk-utilities.html#adg-gtk-use-default-icons"></keyword>
+    <keyword type="function" name="adg_gtk_window_hide_here ()" link="gtk-utilities.html#adg-gtk-window-hide-here" since="1.0"></keyword>
+    <keyword type="function" name="gtk_widget_get_window ()" link="gtk-utilities.html#gtk-widget-get-window" since="1.0"></keyword>
+    <keyword type="struct" name="struct AdgGtkArea" link="AdgGtkArea.html#AdgGtkArea-struct"></keyword>
+    <keyword type="struct" name="struct AdgGtkAreaClass" link="AdgGtkArea.html#AdgGtkAreaClass" since="1.0"></keyword>
+    <keyword type="function" name="adg_gtk_area_canvas_changed ()" link="AdgGtkArea.html#adg-gtk-area-canvas-changed" since="1.0"></keyword>
+    <keyword type="function" name="adg_gtk_area_extents_changed ()" link="AdgGtkArea.html#adg-gtk-area-extents-changed" since="1.0"></keyword>
+    <keyword type="function" name="adg_gtk_area_get_canvas ()" link="AdgGtkArea.html#adg-gtk-area-get-canvas" since="1.0"></keyword>
+    <keyword type="function" name="adg_gtk_area_get_extents ()" link="AdgGtkArea.html#adg-gtk-area-get-extents" since="1.0"></keyword>
+    <keyword type="function" name="adg_gtk_area_get_factor ()" link="AdgGtkArea.html#adg-gtk-area-get-factor" since="1.0"></keyword>
+    <keyword type="function" name="adg_gtk_area_get_render_map ()" link="AdgGtkArea.html#adg-gtk-area-get-render-map" since="1.0"></keyword>
+    <keyword type="function" name="adg_gtk_area_get_zoom ()" link="AdgGtkArea.html#adg-gtk-area-get-zoom" since="1.0"></keyword>
+    <keyword type="function" name="adg_gtk_area_has_autozoom ()" link="AdgGtkArea.html#adg-gtk-area-has-autozoom" since="1.0"></keyword>
+    <keyword type="function" name="adg_gtk_area_new ()" link="AdgGtkArea.html#adg-gtk-area-new" since="1.0"></keyword>
+    <keyword type="function" name="adg_gtk_area_new_with_canvas ()" link="AdgGtkArea.html#adg-gtk-area-new-with-canvas" since="1.0"></keyword>
+    <keyword type="function" name="adg_gtk_area_reset ()" link="AdgGtkArea.html#adg-gtk-area-reset"></keyword>
+    <keyword type="function" name="adg_gtk_area_set_canvas ()" link="AdgGtkArea.html#adg-gtk-area-set-canvas" since="1.0"></keyword>
+    <keyword type="function" name="adg_gtk_area_set_factor ()" link="AdgGtkArea.html#adg-gtk-area-set-factor" since="1.0"></keyword>
+    <keyword type="function" name="adg_gtk_area_set_render_map ()" link="AdgGtkArea.html#adg-gtk-area-set-render-map" since="1.0"></keyword>
+    <keyword type="function" name="adg_gtk_area_switch_autozoom ()" link="AdgGtkArea.html#adg-gtk-area-switch-autozoom" since="1.0"></keyword>
+    <keyword type="function" name="adg_gtk_area_transform_render_map ()" link="AdgGtkArea.html#adg-gtk-area-transform-render-map" since="1.0"></keyword>
+    <keyword type="property" name="The &quot;autozoom&quot; property" link="AdgGtkArea.html#AdgGtkArea--autozoom"></keyword>
+    <keyword type="property" name="The &quot;canvas&quot; property" link="AdgGtkArea.html#AdgGtkArea--canvas"></keyword>
+    <keyword type="property" name="The &quot;factor&quot; property" link="AdgGtkArea.html#AdgGtkArea--factor"></keyword>
+    <keyword type="property" name="The &quot;render-map&quot; property" link="AdgGtkArea.html#AdgGtkArea--render-map"></keyword>
+    <keyword type="signal" name="The &quot;canvas-changed&quot; signal" link="AdgGtkArea.html#AdgGtkArea-canvas-changed"></keyword>
+    <keyword type="signal" name="The &quot;extents-changed&quot; signal" link="AdgGtkArea.html#AdgGtkArea-extents-changed"></keyword>
+    <keyword type="struct" name="struct AdgGtkLayout" link="AdgGtkLayout.html#AdgGtkLayout-struct"></keyword>
+    <keyword type="struct" name="struct AdgGtkLayoutClass" link="AdgGtkLayout.html#AdgGtkLayoutClass"></keyword>
+    <keyword type="function" name="adg_gtk_layout_get_hadjustment ()" link="AdgGtkLayout.html#adg-gtk-layout-get-hadjustment" since="1.0"></keyword>
+    <keyword type="function" name="adg_gtk_layout_get_vadjustment ()" link="AdgGtkLayout.html#adg-gtk-layout-get-vadjustment" since="1.0"></keyword>
+    <keyword type="function" name="adg_gtk_layout_new ()" link="AdgGtkLayout.html#adg-gtk-layout-new" since="1.0"></keyword>
+    <keyword type="function" name="adg_gtk_layout_new_with_canvas ()" link="AdgGtkLayout.html#adg-gtk-layout-new-with-canvas" since="1.0"></keyword>
+    <keyword type="function" name="adg_gtk_layout_set_hadjustment ()" link="AdgGtkLayout.html#adg-gtk-layout-set-hadjustment" since="1.0"></keyword>
+    <keyword type="function" name="adg_gtk_layout_set_vadjustment ()" link="AdgGtkLayout.html#adg-gtk-layout-set-vadjustment" since="1.0"></keyword>
+    <keyword type="constant" name="ADG_DRESS_UNDEFINED" link="enumerations.html#ADG-DRESS-UNDEFINED:CAPS"></keyword>
+    <keyword type="constant" name="ADG_DRESS_COLOR" link="enumerations.html#ADG-DRESS-COLOR:CAPS"></keyword>
+    <keyword type="constant" name="ADG_DRESS_COLOR_BACKGROUND" link="enumerations.html#ADG-DRESS-COLOR-BACKGROUND:CAPS"></keyword>
+    <keyword type="constant" name="ADG_DRESS_COLOR_STROKE" link="enumerations.html#ADG-DRESS-COLOR-STROKE:CAPS"></keyword>
+    <keyword type="constant" name="ADG_DRESS_COLOR_DIMENSION" link="enumerations.html#ADG-DRESS-COLOR-DIMENSION:CAPS"></keyword>
+    <keyword type="constant" name="ADG_DRESS_COLOR_ANNOTATION" link="enumerations.html#ADG-DRESS-COLOR-ANNOTATION:CAPS"></keyword>
+    <keyword type="constant" name="ADG_DRESS_COLOR_FILL" link="enumerations.html#ADG-DRESS-COLOR-FILL:CAPS"></keyword>
+    <keyword type="constant" name="ADG_DRESS_COLOR_AXIS" link="enumerations.html#ADG-DRESS-COLOR-AXIS:CAPS"></keyword>
+    <keyword type="constant" name="ADG_DRESS_COLOR_HIDDEN" link="enumerations.html#ADG-DRESS-COLOR-HIDDEN:CAPS"></keyword>
+    <keyword type="constant" name="ADG_DRESS_LINE" link="enumerations.html#ADG-DRESS-LINE:CAPS"></keyword>
+    <keyword type="constant" name="ADG_DRESS_LINE_STROKE" link="enumerations.html#ADG-DRESS-LINE-STROKE:CAPS"></keyword>
+    <keyword type="constant" name="ADG_DRESS_LINE_DIMENSION" link="enumerations.html#ADG-DRESS-LINE-DIMENSION:CAPS"></keyword>
+    <keyword type="constant" name="ADG_DRESS_LINE_FILL" link="enumerations.html#ADG-DRESS-LINE-FILL:CAPS"></keyword>
+    <keyword type="constant" name="ADG_DRESS_LINE_GRID" link="enumerations.html#ADG-DRESS-LINE-GRID:CAPS"></keyword>
+    <keyword type="constant" name="ADG_DRESS_LINE_FRAME" link="enumerations.html#ADG-DRESS-LINE-FRAME:CAPS"></keyword>
+    <keyword type="constant" name="ADG_DRESS_LINE_AXIS" link="enumerations.html#ADG-DRESS-LINE-AXIS:CAPS"></keyword>
+    <keyword type="constant" name="ADG_DRESS_LINE_HIDDEN" link="enumerations.html#ADG-DRESS-LINE-HIDDEN:CAPS"></keyword>
+    <keyword type="constant" name="ADG_DRESS_FONT" link="enumerations.html#ADG-DRESS-FONT:CAPS"></keyword>
+    <keyword type="constant" name="ADG_DRESS_FONT_TEXT" link="enumerations.html#ADG-DRESS-FONT-TEXT:CAPS"></keyword>
+    <keyword type="constant" name="ADG_DRESS_FONT_ANNOTATION" link="enumerations.html#ADG-DRESS-FONT-ANNOTATION:CAPS"></keyword>
+    <keyword type="constant" name="ADG_DRESS_FONT_QUOTE_TEXT" link="enumerations.html#ADG-DRESS-FONT-QUOTE-TEXT:CAPS"></keyword>
+    <keyword type="constant" name="ADG_DRESS_FONT_QUOTE_ANNOTATION" link="enumerations.html#ADG-DRESS-FONT-QUOTE-ANNOTATION:CAPS"></keyword>
+    <keyword type="constant" name="ADG_DRESS_DIMENSION" link="enumerations.html#ADG-DRESS-DIMENSION:CAPS"></keyword>
+    <keyword type="constant" name="ADG_DRESS_FILL" link="enumerations.html#ADG-DRESS-FILL:CAPS"></keyword>
+    <keyword type="constant" name="ADG_DRESS_FILL_HATCH" link="enumerations.html#ADG-DRESS-FILL-HATCH:CAPS"></keyword>
+    <keyword type="constant" name="ADG_DRESS_TABLE" link="enumerations.html#ADG-DRESS-TABLE:CAPS"></keyword>
+    <keyword type="constant" name="ADG_MIX_UNDEFINED" link="enumerations.html#ADG-MIX-UNDEFINED:CAPS"></keyword>
+    <keyword type="constant" name="ADG_MIX_DISABLED" link="enumerations.html#ADG-MIX-DISABLED:CAPS"></keyword>
+    <keyword type="constant" name="ADG_MIX_NONE" link="enumerations.html#ADG-MIX-NONE:CAPS"></keyword>
+    <keyword type="constant" name="ADG_MIX_ANCESTORS" link="enumerations.html#ADG-MIX-ANCESTORS:CAPS"></keyword>
+    <keyword type="constant" name="ADG_MIX_ANCESTORS_NORMALIZED" link="enumerations.html#ADG-MIX-ANCESTORS-NORMALIZED:CAPS"></keyword>
+    <keyword type="constant" name="ADG_MIX_PARENT" link="enumerations.html#ADG-MIX-PARENT:CAPS"></keyword>
+    <keyword type="constant" name="ADG_MIX_PARENT_NORMALIZED" link="enumerations.html#ADG-MIX-PARENT-NORMALIZED:CAPS"></keyword>
+    <keyword type="constant" name="ADG_PROJECTION_SCHEME_UNDEFINED" link="enumerations.html#ADG-PROJECTION-SCHEME-UNDEFINED:CAPS"></keyword>
+    <keyword type="constant" name="ADG_PROJECTION_SCHEME_FIRST_ANGLE" link="enumerations.html#ADG-PROJECTION-SCHEME-FIRST-ANGLE:CAPS"></keyword>
+    <keyword type="constant" name="ADG_PROJECTION_SCHEME_THIRD_ANGLE" link="enumerations.html#ADG-PROJECTION-SCHEME-THIRD-ANGLE:CAPS"></keyword>
+    <keyword type="constant" name="ADG_THREE_STATE_OFF" link="enumerations.html#ADG-THREE-STATE-OFF:CAPS"></keyword>
+    <keyword type="constant" name="ADG_THREE_STATE_ON" link="enumerations.html#ADG-THREE-STATE-ON:CAPS"></keyword>
+    <keyword type="constant" name="ADG_THREE_STATE_UNKNOWN" link="enumerations.html#ADG-THREE-STATE-UNKNOWN:CAPS"></keyword>
+    <keyword type="constant" name="ADG_TRANSFORM_NONE" link="enumerations.html#ADG-TRANSFORM-NONE:CAPS"></keyword>
+    <keyword type="constant" name="ADG_TRANSFORM_BEFORE" link="enumerations.html#ADG-TRANSFORM-BEFORE:CAPS"></keyword>
+    <keyword type="constant" name="ADG_TRANSFORM_AFTER" link="enumerations.html#ADG-TRANSFORM-AFTER:CAPS"></keyword>
+    <keyword type="constant" name="ADG_TRANSFORM_BEFORE_NORMALIZED" link="enumerations.html#ADG-TRANSFORM-BEFORE-NORMALIZED:CAPS"></keyword>
+    <keyword type="constant" name="ADG_TRANSFORM_AFTER_NORMALIZED" link="enumerations.html#ADG-TRANSFORM-AFTER-NORMALIZED:CAPS"></keyword>
+  </functions>
+</book>
