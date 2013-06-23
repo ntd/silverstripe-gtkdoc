@@ -1,6 +1,6 @@
 <?php
 
-class GtkdocSection {
+class GtkdocHtml {
 
     // The original HTML
     private $_raw_html;
@@ -66,7 +66,7 @@ class GtkdocSection {
 
 
     /**
-     * Create a new GtkdocSection instance.
+     * Create a new GtkdocHtml instance.
      *
      * A string containing the HTML of the gtkdoc file to parse must
      * be passed in. The real processing will be triggered by the
@@ -76,7 +76,7 @@ class GtkdocSection {
      * file_get_contents():
      *
      * <code>
-     * $section = new GtkdocSection(@file_get_content($file));
+     * $html = new GtkdocHtml(@file_get_content($file));
      * </code>
      *
      * URL resolution is performed by a (customizable) mangle table,
@@ -127,7 +127,7 @@ class GtkdocSection {
      * regex patterns as keys and replacements as values, e.g.:
      *
      * <code>
-     * $section->addMangleRules(array(
+     * $html->addMangleRules(array(
      *     '|/cairo/([^/]*)$|' => 'http://cairographics.org/manual/$1'
      * ));
      * </code>
