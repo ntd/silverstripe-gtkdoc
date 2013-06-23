@@ -1,0 +1,241 @@
+<div class="gtkdoc"><div class="refentry">
+<a name="AdgGtkLayout"></a>
+
+<div class="refsynopsisdiv">
+<a name="AdgGtkLayout.synopsis"></a><h2>Synopsis</h2>
+<pre class="synopsis">
+#include &lt;adg-1/adg.h&gt;
+
+struct              <a class="link" href="AdgGtkLayout.html#AdgGtkLayout-struct" title="struct AdgGtkLayout">AdgGtkLayout</a>;
+struct              <a class="link" href="AdgGtkLayout.html#AdgGtkLayoutClass" title="struct AdgGtkLayoutClass">AdgGtkLayoutClass</a>;
+<a href="http://developer.gnome.org/gtk3/stable/GtkWidget.html"><span class="returnvalue">GtkWidget</span></a> *         <a class="link" href="AdgGtkLayout.html#adg-gtk-layout-new" title="adg_gtk_layout_new ()">adg_gtk_layout_new</a>                  (<em class="parameter"><code><span class="type">void</span></code></em>);
+<a href="http://developer.gnome.org/gtk3/stable/GtkWidget.html"><span class="returnvalue">GtkWidget</span></a> *         <a class="link" href="AdgGtkLayout.html#adg-gtk-layout-new-with-canvas" title="adg_gtk_layout_new_with_canvas ()">adg_gtk_layout_new_with_canvas</a>      (<em class="parameter"><code><a class="link" href="AdgCanvas.html" title="AdgCanvas"><span class="type">AdgCanvas</span></a> *canvas</code></em>);
+<span class="returnvalue">void</span>                <a class="link" href="AdgGtkLayout.html#adg-gtk-layout-set-hadjustment" title="adg_gtk_layout_set_hadjustment ()">adg_gtk_layout_set_hadjustment</a>      (<em class="parameter"><code><a class="link" href="AdgGtkLayout.html" title="AdgGtkLayout"><span class="type">AdgGtkLayout</span></a> *layout</code></em>,
+                                                         <em class="parameter"><code><a href="http://developer.gnome.org/gtk3/stable/GtkAdjustment.html"><span class="type">GtkAdjustment</span></a> *hadjustment</code></em>);
+<a href="http://developer.gnome.org/gtk3/stable/GtkAdjustment.html"><span class="returnvalue">GtkAdjustment</span></a> *     <a class="link" href="AdgGtkLayout.html#adg-gtk-layout-get-hadjustment" title="adg_gtk_layout_get_hadjustment ()">adg_gtk_layout_get_hadjustment</a>      (<em class="parameter"><code><a class="link" href="AdgGtkLayout.html" title="AdgGtkLayout"><span class="type">AdgGtkLayout</span></a> *layout</code></em>);
+<span class="returnvalue">void</span>                <a class="link" href="AdgGtkLayout.html#adg-gtk-layout-set-vadjustment" title="adg_gtk_layout_set_vadjustment ()">adg_gtk_layout_set_vadjustment</a>      (<em class="parameter"><code><a class="link" href="AdgGtkLayout.html" title="AdgGtkLayout"><span class="type">AdgGtkLayout</span></a> *layout</code></em>,
+                                                         <em class="parameter"><code><a href="http://developer.gnome.org/gtk3/stable/GtkAdjustment.html"><span class="type">GtkAdjustment</span></a> *vadjustment</code></em>);
+<a href="http://developer.gnome.org/gtk3/stable/GtkAdjustment.html"><span class="returnvalue">GtkAdjustment</span></a> *     <a class="link" href="AdgGtkLayout.html#adg-gtk-layout-get-vadjustment" title="adg_gtk_layout_get_vadjustment ()">adg_gtk_layout_get_vadjustment</a>      (<em class="parameter"><code><a class="link" href="AdgGtkLayout.html" title="AdgGtkLayout"><span class="type">AdgGtkLayout</span></a> *layout</code></em>);
+</pre>
+</div>
+<div class="refsect1">
+<a name="AdgGtkLayout.object-hierarchy"></a><h2>Object Hierarchy</h2>
+<pre class="synopsis">
+  <a href="http://adg.entidi.com/cpml/GObject.html">GObject</a>
+   +----GInitiallyUnowned
+         +----<a href="http://developer.gnome.org/gtk3/stable/GtkWidget.html">GtkWidget</a>
+               +----<a href="http://developer.gnome.org/gtk3/stable/GtkDrawingArea.html">GtkDrawingArea</a>
+                     +----<a class="link" href="AdgGtkArea.html" title="AdgGtkArea">AdgGtkArea</a>
+                           +----AdgGtkLayout
+</pre>
+</div>
+<div class="refsect1">
+<a name="AdgGtkLayout.implemented-interfaces"></a><h2>Implemented Interfaces</h2>
+<p>
+AdgGtkLayout implements
+ AtkImplementorIface,  <a href="http://developer.gnome.org/gtk3/stable/GtkBuildable.html">GtkBuildable</a> and  <a href="http://developer.gnome.org/gtk3/stable/GtkScrollable.html">GtkScrollable</a>.</p>
+</div>
+<div class="refsect1">
+<a name="AdgGtkLayout.description"></a><h2>Description</h2>
+<p>
+This is an <a class="link" href="AdgGtkArea.html" title="AdgGtkArea"><span class="type">AdgGtkArea</span></a> derived object with scrolling capabilities.
+It means an <a class="link" href="AdgGtkLayout.html" title="AdgGtkLayout"><span class="type">AdgGtkLayout</span></a> object can be added directly to a
+<a href="http://developer.gnome.org/gtk3/stable/GtkScrolledWindow.html"><span class="type">GtkScrolledWindow</span></a> container without the need for an intermediate
+<a href="http://developer.gnome.org/gtk3/stable/GtkViewport.html"><span class="type">GtkViewport</span></a> container.
+</p>
+</div>
+<div class="refsect1">
+<a name="AdgGtkLayout.details"></a><h2>Details</h2>
+<div class="refsect2">
+<a name="AdgGtkLayout-struct"></a><h3>struct AdgGtkLayout</h3>
+<pre class="programlisting">struct AdgGtkLayout;</pre>
+<p>
+All fields are private and should not be used directly.
+Use its public methods instead.
+</p>
+<p class="since">Since 1.0</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="AdgGtkLayoutClass"></a><h3>struct AdgGtkLayoutClass</h3>
+<pre class="programlisting">struct AdgGtkLayoutClass {
+};
+</pre>
+</div>
+<hr>
+<div class="refsect2">
+<a name="adg-gtk-layout-new"></a><h3>adg_gtk_layout_new ()</h3>
+<pre class="programlisting"><a href="http://developer.gnome.org/gtk3/stable/GtkWidget.html"><span class="returnvalue">GtkWidget</span></a> *         adg_gtk_layout_new                  (<em class="parameter"><code><span class="type">void</span></code></em>);</pre>
+<p>
+Creates a new empty <a class="link" href="AdgGtkLayout.html" title="AdgGtkLayout"><span class="type">AdgGtkLayout</span></a>. The widget is useful only after
+an <a class="link" href="AdgCanvas.html" title="AdgCanvas"><span class="type">AdgCanvas</span></a> has been added either using the <span class="type">"canvas"</span>
+property or with <code class="function">adg_gtk_layout_set_canvas()</code>.
+</p>
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
+<col align="left" valign="top">
+<col>
+</colgroup>
+<tbody><tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>the newly created widget. <span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span>
+</td>
+</tr></tbody>
+</table></div>
+<p class="since">Since 1.0</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="adg-gtk-layout-new-with-canvas"></a><h3>adg_gtk_layout_new_with_canvas ()</h3>
+<pre class="programlisting"><a href="http://developer.gnome.org/gtk3/stable/GtkWidget.html"><span class="returnvalue">GtkWidget</span></a> *         adg_gtk_layout_new_with_canvas      (<em class="parameter"><code><a class="link" href="AdgCanvas.html" title="AdgCanvas"><span class="type">AdgCanvas</span></a> *canvas</code></em>);</pre>
+<p>
+Creates a new <a class="link" href="AdgGtkLayout.html" title="AdgGtkLayout"><span class="type">AdgGtkLayout</span></a> and sets the <span class="type">"canvas"</span> property
+to <em class="parameter"><code>canvas</code></em>.
+</p>
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
+<col align="left" valign="top">
+<col>
+</colgroup>
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>canvas</code></em> :</span></p></td>
+<td>the <a class="link" href="AdgCanvas.html" title="AdgCanvas"><span class="type">AdgCanvas</span></a> shown by this widget</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>the newly created widget. <span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span>
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since 1.0</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="adg-gtk-layout-set-hadjustment"></a><h3>adg_gtk_layout_set_hadjustment ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>                adg_gtk_layout_set_hadjustment      (<em class="parameter"><code><a class="link" href="AdgGtkLayout.html" title="AdgGtkLayout"><span class="type">AdgGtkLayout</span></a> *layout</code></em>,
+                                                         <em class="parameter"><code><a href="http://developer.gnome.org/gtk3/stable/GtkAdjustment.html"><span class="type">GtkAdjustment</span></a> *hadjustment</code></em>);</pre>
+<p>
+Sets the new horizontal adjustment for <em class="parameter"><code>layout</code></em> to <em class="parameter"><code>hadjustment</code></em>.
+The old adjustment, if present, is unreferenced.
+</p>
+<p>
+This is basically the same as manually setting the
+<span class="type">"hadjustment"</span> property with <code class="function">g_object_set()</code>.
+</p>
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
+<col align="left" valign="top">
+<col>
+</colgroup>
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>layout</code></em> :</span></p></td>
+<td>an <a class="link" href="AdgGtkLayout.html" title="AdgGtkLayout"><span class="type">AdgGtkLayout</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>hadjustment</code></em> :</span></p></td>
+<td>the new adjustment</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since 1.0</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="adg-gtk-layout-get-hadjustment"></a><h3>adg_gtk_layout_get_hadjustment ()</h3>
+<pre class="programlisting"><a href="http://developer.gnome.org/gtk3/stable/GtkAdjustment.html"><span class="returnvalue">GtkAdjustment</span></a> *     adg_gtk_layout_get_hadjustment      (<em class="parameter"><code><a class="link" href="AdgGtkLayout.html" title="AdgGtkLayout"><span class="type">AdgGtkLayout</span></a> *layout</code></em>);</pre>
+<p>
+Retrieves the current horizontal adjustment of <em class="parameter"><code>layout</code></em>.
+</p>
+<p>
+The returned alignment is owned by <em class="parameter"><code>layout</code></em> and should
+not be modified or freed.
+</p>
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
+<col align="left" valign="top">
+<col>
+</colgroup>
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>layout</code></em> :</span></p></td>
+<td>an <a class="link" href="AdgGtkLayout.html" title="AdgGtkLayout"><span class="type">AdgGtkLayout</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>the alignment of <em class="parameter"><code>layout</code></em>. <span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span>
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since 1.0</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="adg-gtk-layout-set-vadjustment"></a><h3>adg_gtk_layout_set_vadjustment ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>                adg_gtk_layout_set_vadjustment      (<em class="parameter"><code><a class="link" href="AdgGtkLayout.html" title="AdgGtkLayout"><span class="type">AdgGtkLayout</span></a> *layout</code></em>,
+                                                         <em class="parameter"><code><a href="http://developer.gnome.org/gtk3/stable/GtkAdjustment.html"><span class="type">GtkAdjustment</span></a> *vadjustment</code></em>);</pre>
+<p>
+Sets the new vertical adjustment for <em class="parameter"><code>layout</code></em> to <em class="parameter"><code>vadjustment</code></em>.
+The old adjustment, if present, is unreferenced.
+</p>
+<p>
+This is basically the same as manually setting the
+<span class="type">"vadjustment"</span> property with <code class="function">g_object_set()</code>.
+</p>
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
+<col align="left" valign="top">
+<col>
+</colgroup>
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>layout</code></em> :</span></p></td>
+<td>an <a class="link" href="AdgGtkLayout.html" title="AdgGtkLayout"><span class="type">AdgGtkLayout</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>vadjustment</code></em> :</span></p></td>
+<td>the new adjustment</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since 1.0</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="adg-gtk-layout-get-vadjustment"></a><h3>adg_gtk_layout_get_vadjustment ()</h3>
+<pre class="programlisting"><a href="http://developer.gnome.org/gtk3/stable/GtkAdjustment.html"><span class="returnvalue">GtkAdjustment</span></a> *     adg_gtk_layout_get_vadjustment      (<em class="parameter"><code><a class="link" href="AdgGtkLayout.html" title="AdgGtkLayout"><span class="type">AdgGtkLayout</span></a> *layout</code></em>);</pre>
+<p>
+Retrieves the current vertical adjustment of <em class="parameter"><code>layout</code></em>.
+</p>
+<p>
+The returned alignment is owned by <em class="parameter"><code>layout</code></em> and should
+not be modified or freed.
+</p>
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
+<col align="left" valign="top">
+<col>
+</colgroup>
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>layout</code></em> :</span></p></td>
+<td>an <a class="link" href="AdgGtkLayout.html" title="AdgGtkLayout"><span class="type">AdgGtkLayout</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>the alignment of <em class="parameter"><code>layout</code></em>. <span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span>
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since 1.0</p>
+</div>
+</div>
+</div></div>
