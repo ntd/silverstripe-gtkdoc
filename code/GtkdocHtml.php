@@ -58,7 +58,7 @@ class GtkdocHtml {
         return $url;
     }
 
-    private function _mangleInternalUrl($url) {
+    private function _mangleURL($url) {
         // Merge $url with $this->_base, giving precedence to the former
         $parsed = self::_decomposeURL($url);
         extract($parsed);
@@ -80,12 +80,18 @@ class GtkdocHtml {
     }
 
     private function _urlMangler($url) {
-        // If the $url contains a slash it is supposed to be external:
-        // maybe a naive approach but it seems to work well
-        if (strpos($url, '/') !== false)
+        if (parse_url($url, PHP_URL_HOST)) {
+            // When the $url contains the host component, it is
+            // considered absolute: leave it as is
+            return $url;
+        } elseif (strpos($url, '/') !== false) {
+            // If the $url contains a slash it is supposed to be a
+            // relative link to an external project: pass it throught
+            // the mangle table
             return $this->_mangleExternalUrl($url);
-        else
-            return $this->_mangleInternalUrl($url);
+        }
+
+        return $this->_mangleURL($url);
     }
 
     private function _processDocument(DOMDocument $doc) {
@@ -235,7 +241,7 @@ class GtkdocHtml {
      * @return String The base url.
      */
     public function getBaseURL() {
-        return $this->_mangleInternalURL('');
+        return $this->_mangleURL('');
     }
 
     /**
