@@ -14,8 +14,38 @@ class GtkdocHtml {
     // The mangle table for _urlMangler()
     private $_mangle_table;
 
+    // The components of the base URL to prepend to internal links
+    private $_base;
 
-    private function _urlMangler($url) {
+
+    static private function _decomposeURL($url) {
+        $components = array();
+
+        $parsed = parse_url($url);
+        if (is_array($parsed)) {
+            extract($parsed);
+
+            if (isset($path)) {
+                $last_slash = strrpos($path, '/');
+                if ($last_slash === false) {
+                    $components['file'] = $path;
+                } else {
+                    $components['path'] = substr($path, 0, $last_slash+1);
+                    $components['file'] = substr($path, $last_slash+1);
+                }
+            }
+
+            if (isset($fragment))
+                $components['fragment'] = $fragment;
+
+            if (isset($query))
+                $components['query'] = $query;
+        }
+
+        return $components;
+    }
+
+    private function _mangleExternalUrl($url) {
         // A single preg_replace() call with arrays cannot be used
         // because the replacement must stop at the first match
         $count = 0;
@@ -26,6 +56,36 @@ class GtkdocHtml {
         }
 
         return $url;
+    }
+
+    private function _mangleInternalUrl($url) {
+        // Merge $url with $this->_base, giving precedence to the former
+        $parsed = self::_decomposeURL($url);
+        extract($parsed);
+
+        $url  = @$this->_base['path'];
+        $url .= (isset($file) && $file != '') ? $file : @$this->_base['file'];
+
+        if (isset($query))
+            $url .= '?' . $query;
+        elseif (isset($this->_base['query']))
+            $url .= '?' . $this->_base['query'];
+
+        if (isset($fragment))
+            $url .= '#' . $fragment;
+        elseif (isset($this->_base['fragment']))
+            $url .= '#' . $this->_base['fragment'];
+
+        return $url;
+    }
+
+    private function _urlMangler($url) {
+        // If the $url contains a slash it is supposed to be external:
+        // maybe a naive approach but it seems to work well
+        if (strpos($url, '/') !== false)
+            return $this->_mangleExternalUrl($url);
+        else
+            return $this->_mangleInternalUrl($url);
     }
 
     private function _processDocument(DOMDocument $doc) {
@@ -92,6 +152,7 @@ class GtkdocHtml {
     function __construct($html) {
         $this->_raw_html = $html;
         $this->resetMangleRules();
+        $this->_base = array();
     }
 
     /**
@@ -150,6 +211,31 @@ class GtkdocHtml {
      */
     public function getMangleRules() {
         return $this->_mangle_table;
+    }
+
+    /**
+     * Set a new base URL.
+     *
+     * The URL *must* include the HTML file name, such as
+     * "adg/AdgEntity.html". The mangler will take care of merging
+     * relative links in the form of "AdgEntity.html#Description" or
+     * appending fragments only href such as "#Description".
+     *
+     * @param String $base_url The base url to prepend to local links.
+     */
+    public function setBaseURL($base_url) {
+        $this->_base = self::_decomposeURL($base_url);
+    }
+
+    /**
+     * Get the base URL.
+     *
+     * Returns the current base URL of this instance.
+     *
+     * @return String The base url.
+     */
+    public function getBaseURL() {
+        return $this->_mangleInternalURL('');
     }
 
     /**

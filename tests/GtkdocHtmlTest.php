@@ -21,6 +21,28 @@ class GtkdocHtmlTest extends PHPUnit_Framework_TestCase {
         $this->assertTrue($html->process());
     }
 
+    public function testBaseURL() {
+        $html = new GtkdocHtml('<html></html>');
+        $html->setBaseURL('');
+        $this->assertEquals($html->getBaseURL(), '');
+        $html->setBaseURL('/');
+        $this->assertEquals($html->getBaseURL(), '/');
+        $html->setBaseURL('#');
+        $this->assertEquals($html->getBaseURL(), '');
+        $html->setBaseURL('?');
+        $this->assertEquals($html->getBaseURL(), '');
+        $html->setBaseURL('?#');
+        $this->assertEquals($html->getBaseURL(), '');
+        $html->setBaseURL('#Fragment');
+        $this->assertEquals($html->getBaseURL(), '#Fragment');
+        $html->setBaseURL('file.html');
+        $this->assertEquals($html->getBaseURL(), 'file.html');
+        $html->setBaseURL('/file.html?');
+        $this->assertEquals($html->getBaseURL(), '/file.html');
+        $html->setBaseURL('test/path/#');
+        $this->assertEquals($html->getBaseURL(), 'test/path/');
+    }
+
     public function testMangleRules() {
         $html = new GtkdocHtml(@file_get_contents('AdgGtkLayout.html'));
         $default_rules = $html->getMangleRules();
@@ -56,6 +78,7 @@ class GtkdocHtmlTest extends PHPUnit_Framework_TestCase {
     public function testHtml() {
         $html = new GtkdocHtml(@file_get_contents('AdgGtkLayout.html'));
         $this->assertEquals($html->getHtml(), '');
+        $html->setBaseURL('AdgGtkLayout.html');
         $this->assertTrue($html->process());
         $this->assertStringEqualsFile('AdgGtkLayout.mangled', $html->getHtml());
     }
