@@ -16,8 +16,8 @@ class GtkdocHtml {
 
 
     private function _urlMangler($url) {
-        // A single preg_replace() cannot be used because the
-        // replacement must stop at the first match
+        // A single preg_replace() call with arrays cannot be used
+        // because the replacement must stop at the first match
         $count = 0;
         foreach ($this->_mangle_table as $pattern => $replacement) {
             $url = preg_replace($pattern, $replacement, $url, 1, $count);
