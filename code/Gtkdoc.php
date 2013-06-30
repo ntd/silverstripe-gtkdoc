@@ -376,6 +376,7 @@ class Gtkdoc_Controller extends Page_Controller {
         // Kind of a hack by I did not found a better way still
         // compatible with silverstripe-autotoc
         $this->dataRecord = $section;
+        $this->Title = $section->Title;
 
         return $this->getViewer('section')->process($this);
     }
