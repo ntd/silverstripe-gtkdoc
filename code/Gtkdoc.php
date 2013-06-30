@@ -305,6 +305,7 @@ class GtkdocSection extends DataObject {
             return true;
 
         $html = new GtkdocHtml(@file_get_contents($this->GtkdocFile));
+        $html->setBaseURL($this->RelativeLink());
         if (! $html->process())
             return false;
 
