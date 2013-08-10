@@ -147,6 +147,11 @@ class Gtkdoc extends Page {
 
 class GtkdocSection extends DataObject {
 
+    // Needed to have searchable fields
+    static $create_table_options = array(
+        'MySQLDatabase' => 'ENGINE=MyISAM'
+    );
+
     static $db = array(
         'URLSegment'      => 'Varchar(255)',
         'Title'           => 'Varchar(255)',
@@ -161,6 +166,12 @@ class GtkdocSection extends DataObject {
 
     static $has_one = array(
         'Root'            => 'Gtkdoc'
+    );
+
+    static $searchable_fields = array(
+        'Title',
+        'MetaDescription',
+        'Content'
     );
 
     static $casting = array(
@@ -358,6 +369,143 @@ class GtkdocSection extends DataObject {
      */
     public function Children() {
         return $this->Root->childrenOfSection($this->URLSegment);
+    }
+}
+
+/**
+ * Extends ContentController to include GtkdocSection matches in search
+ * results.
+ *
+ * This extension is intentionally compatible with
+ * ContentControllerSearchExtension (and in fact it substitutes it)
+ * to skip the need of documenting it ;).
+ */
+class GtkdocControllerSearchExtension extends Extension {
+
+    static private $search_action = '/home/SearchForm';
+
+    static private function merge(&$matches, $possible_matches) {
+        foreach ($possible_matches as &$possible_match) {
+            $possible_url = $possible_match->URLSegment;
+            $duplicate = false;
+            foreach ($matches as &$match) {
+                $url = $match->URLSegment;
+                if ($possible_url == $url)
+                    continue 2;
+            }
+            $matches[] = $possible_match;
+        }
+    }
+
+    /**
+     * Changes the search action.
+     *
+     * Redirects to the given URLs on a search. Check SearchForm()
+     * for details.
+     *
+     * @param  String $action The new URL of the search action.
+     */
+    static public function setSearchAction($action) {
+        self::$search_action = $action;
+    }
+
+    /**
+     * Gets the search action.
+     *
+     * @return String The URL of the search action.
+     */
+    static public function getSearchAction() {
+        return self::$search_action;
+    }
+
+    /**
+     * Site search form.
+     *
+     * Similar to ContentControllerSearchExtension::SearchForm() but
+     * redirecting to a suitable page to avoid invalid URLs such as
+     * 'adg/AdgEntity.html/SearchForm'
+     *
+     * The default redirection is to '/home/SearchForm' but can be
+     * changed with GtkdocControllerSearcExtension::setSearchAction().
+     */
+    public function SearchForm() {
+        if ($this->owner->request && $this->owner->request->getVar('Search'))
+            $searchText = $this->owner->request->getVar('Search');
+        else
+            $searchText =  _t('SearchForm.SEARCH', 'Search');
+
+        $fields = new FieldList(
+            new TextField('Search', false, $searchText)
+        );
+
+        $actions = new FieldList(
+            new FormAction('results', _t('SearchForm.GO', 'Go'))
+        );
+
+        $form = new SearchForm($this->owner, 'SearchForm', $fields, $actions);
+        $form->classesToSearch(FulltextSearchable::get_searchable_classes());
+
+        // The following line is the reason of this overriding: we must
+        // redirect to a suitable page to avoid invalid URLs such as
+        // 'adg/AdgEntity.html/SearchForm'
+        $form->setFormAction(self::$search_action);
+
+        return $form;
+    }
+
+    /**
+     * Gets the results from the given query.
+     *
+     * Appends to the usual results the matches on the GtkdocSection
+     * instances on the following order:
+     *
+     * 1. GtkdocSections with matches in 'Title'
+     * 2. GtkdocSections with matches in 'MetaDescription'
+     * 3. GtkdocSections with matches in 'Content'
+     *
+     * Eventual duplicates are dropped from the list.
+     *
+     * @param array          $data    The raw data submitted by user
+     * @param SearchForm     $form    The form instance
+     * @param SS_HTTPRequest $request Request for this action
+     */
+    public function results($data, $form, $request) {
+        $keywords = $data['Search'];
+
+        // Populate the first matches in the usual way
+        $matches = $form->getResults()->toArray();
+
+        // Get the list of GtkdocSection with matching title...
+        $context = singleton('GtkdocSection')->getDefaultSearchContext();
+        $gtkdoc_matches = $context->getResults(array(
+            'Title' => $keywords
+        ))->toArray();
+
+        // ...and add to them the list of GtkdocSection with matching
+        // description and matching content, skipping the duplicates...
+        self::merge($gtkdoc_matches,
+                    $context->getResults(array(
+                        'MetaDescription' => $keywords
+                    ))->toArray());
+        self::merge($gtkdoc_matches,
+                    $context->getResults(array(
+                        'Content' => $keywords
+                    ))->toArray());
+
+        // Append the GtkdocSection matches to the original ones
+        $matches = array_merge($matches, $gtkdoc_matches);
+
+        $results = new PaginatedList(new ArrayList($matches));
+        $results->setPageLength(10);
+        $results->setLimitItems(true);
+
+        $data = array(
+            'Results' => $results,
+            'Query'   => $form->getSearchQuery(),
+            'Title'   => _t('SearchForm.SearchResults', 'Search Results')
+        );
+
+        return $this->owner->customise($data)->renderWith(array('Page_results', 'Page'));
     }
 }
 
