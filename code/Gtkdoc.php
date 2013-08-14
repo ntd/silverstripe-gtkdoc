@@ -370,6 +370,19 @@ class GtkdocSection extends DataObject {
     public function Children() {
         return $this->Root->childrenOfSection($this->URLSegment);
     }
+
+    /**
+     * Clear the gtkdoc cache table on /dev/build/.
+     *
+     * Pages are converted and stored into GtkdocSection on the first
+     * access or when they are not up to date. For convenience, clear
+     * this table on /dev/build/ too.
+     */
+    public function requireDefaultRecords() {
+        parent::requireDefaultRecords();
+        DB::query('TRUNCATE "' . __CLASS__ . '"');
+        DB::alteration_message('GtkdocSection cleared', 'deleted');
+    }
 }
 
 /**
