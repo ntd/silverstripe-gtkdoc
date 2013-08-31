@@ -1,5 +1,32 @@
 <?php
 
+/**
+ * Check the timestamp of a datetime field agaist a file.
+ *
+ * This function does not pertain to any class, so putting it here.
+ *
+ * @param  String  $datetime  A datetime field
+ * @param  String  $file      The absolute path to the file name
+ * @return Boolean            true if $datetime is newer than $file
+ */
+function _up_to_date($datetime, $file) {
+    // If $datetime is not set, this is a new record
+    // that *needs* to be updated
+    $db_timestamp = strtotime($datetime);
+    if (! is_int($db_timestamp))
+        return false;
+
+    // If $fs_timestamp is invalid, $file is probably unexistent.
+    // Assume the model is up to date instead of updating its content
+    // with a non-existent file.
+    $fs_timestamp = @filemtime($file);
+    if (! is_int($fs_timestamp))
+        return true;
+
+    return $fs_timestamp < $db_timestamp;
+}
+
+
 class Gtkdoc extends Page {
 
     static $icon = 'gtkdoc/images/gtkdoc';
@@ -35,6 +62,18 @@ class Gtkdoc extends Page {
     }
 
     /**
+     * Get the TOC from the DevhelpFile
+     *
+     * The returned array will be cached in lookupNode().
+     *
+     * @return Array  The table of contents parsed from $DevhelpFile
+     */
+    public function getTOC() {
+        $devhelp = new Devhelp(@file_get_contents($this->DevhelpFile));
+        return $devhelp->process() ? $devhelp->getTOC() : array();
+    }
+
+    /**
      * Lookup a node in the Devhelp tree.
      *
      * The returned array will contain the following items:
@@ -49,8 +88,9 @@ class Gtkdoc extends Page {
      */
     public function lookupNode($filename) {
         if (! isset($this->_toc)) {
-            $devhelp = new Devhelp(@file_get_contents($this->DevhelpFile));
-            $this->_toc = $devhelp->process() ? $devhelp->getTOC() : array();
+            $up_to_date = _up_to_date($this->LastEdited, $this->DevhelpFile);
+            $lifetime = $up_to_date ? 3600 : -1;
+            $this->_toc = $this->cacheToFile('getTOC', $lifetime, $this->DevhelpFile);
         }
         return @$this->_toc[$filename];
     }
@@ -280,22 +320,8 @@ class GtkdocSection extends DataObject {
      * @return Boolean       true if the page is up to date
      */
     public function up_to_date($title) {
-        // If LastEdited is not set, this is a new record
-        if ($title != $this->Title || ! $this->LastEdited)
-            return false;
-
-        $db_timestamp = strtotime($this->LastEdited);
-        if (! is_int($db_timestamp))
-            return false;
-
-        // If $fs_timestamp is invalid the gtk-doc file is probably
-        // not found in the file system. Assume the record is up to date
-        // instead of updating its content with a non-existent file.
-        $fs_timestamp = @filemtime($this->GtkdocFile);
-        if (! is_int($fs_timestamp))
-            return true;
-
-        return $fs_timestamp < $db_timestamp;
+        $up_to_date = _up_to_date($this->LastEdited, $this->GtkdocFile);
+        return $title == $this->Title && $up_to_date;
     }
 
     /**
