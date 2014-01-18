@@ -2,10 +2,8 @@
     "name": "entidi/silverstripe-gtkdoc",
     "description": "A module that imports a gtk-doc manual under a silverstripe page",
     "type": "silverstripe-module",
-    "keywords": ["silverstripe", "gtkdoc"],
-    "require": {
-        "silverstripe/framework": "3.*"
-    },
+    "homepage": "http://gtkdoc.entidi.com/",
+    "keywords": ["silverstripe", "gtkdoc", "dataobject"],
     "license": "BSD-2-Clause",
     "authors": [
         {
@@ -19,7 +17,18 @@
         "issues": "http://dev.entidi.com/p/silverstripe-gtkdoc/issues/",
         "source": "http://dev.entidi.com/p/silverstripe-gtkdoc/source/tree/master/"
     },
+    "require": {
+        "silverstripe/framework": "~3.0"
+    },
+    "extra": {
+        "installer-name": "gtkdoc",
+        "screenshots": [
+            "http://gtkdoc.entidi.com/assets/ssgtkdoc.jpeg",
+            "http://gtkdoc.entidi.com/assets/tree.jpeg"
+        ]
+    },
     "suggest": {
-        "entidi/silverstripe-autotoc": "A module that automatically generates the table of contents of every page"
+        "entidi/silverstripe-autotoc": "A module that automatically generates the table of contents of every page",
+        "entidi/silverstrap": "A SilverStripe theme that supports arbitrary nested menu levels"
     }
 }
