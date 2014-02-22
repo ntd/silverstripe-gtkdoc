@@ -551,6 +551,10 @@ class GtkdocControllerSearchExtension extends Extension {
 
 class Gtkdoc_Controller extends Page_Controller {
 
+    static $allowed_actions = array(
+        'section'
+    );
+
     static $url_handlers = array(
         '$Name!' => 'section'
     );
@@ -561,7 +565,7 @@ class Gtkdoc_Controller extends Page_Controller {
         if (! $section)
             return $this->httpError(404, "Section '$filename' does not exist in devhelp '$this->DevhelpFile'");
 
-        // Kind of a hack by I did not found a better way still
+        // Kind of a hack by I did not find a better way still
         // compatible with silverstripe-autotoc
         $this->dataRecord = $section;
         $this->Title = $section->Title;
