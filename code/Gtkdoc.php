@@ -537,6 +537,7 @@ class GtkdocControllerSearchExtension extends Extension {
         $results = new PaginatedList(new ArrayList($matches));
         $results->setPageLength(10);
         $results->setLimitItems(true);
+        $results->setPageStart($request->getVar('start'));
 
         $data = array(
             'Results' => $results,
