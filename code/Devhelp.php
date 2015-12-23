@@ -1,6 +1,7 @@
 <?php
 
-class Devhelp {
+class Devhelp
+{
 
     // The .devhelp2 content
     private $_xml;
@@ -9,7 +10,8 @@ class Devhelp {
     private $_tree;
 
 
-    private function _processDocument(DOMDocument $doc) {
+    private function _processDocument(DOMDocument $doc)
+    {
         $toc = array(
             '' => array(
                 'name' => '',
@@ -48,7 +50,8 @@ class Devhelp {
      *
      * @param String $xml A chunk of valid XML (UTF-8 encoded).
      */
-    function __construct($xml) {
+    public function __construct($xml)
+    {
         $this->_xml = $xml;
     }
 
@@ -60,18 +63,21 @@ class Devhelp {
      *
      * @return boolean true on success, false on errors.
      */
-    public function process() {
+    public function process()
+    {
         // Check if $this->_xml is valid
-        if (! is_string($this->_xml) || empty($this->_xml))
+        if (! is_string($this->_xml) || empty($this->_xml)) {
             return false;
+        }
 
         // Check silverstripe-autotoc for details on $prefix
         $prefix = "<?xml encoding=\"utf-8\" ?>\n";
 
         // Parse the XML into a DOMDocument tree
         $doc = new DOMDocument();
-        if (! @$doc->loadHTML($prefix . $this->_xml))
+        if (! @$doc->loadHTML($prefix . $this->_xml)) {
             return false;
+        }
 
         // Process the doc
         $this->_processDocument($doc);
@@ -86,7 +92,8 @@ class Devhelp {
      * @return Array An array representing the TOC. A valid array is
      *               always returned.
      */
-    public function getTOC() {
+    public function getTOC()
+    {
         return is_array($this->_tree) ? $this->_tree : array();
     }
 }

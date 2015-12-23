@@ -1,6 +1,7 @@
 <?php
 
-class GtkdocHtml {
+class GtkdocHtml
+{
 
     // The original HTML
     private $_raw_html;
@@ -18,7 +19,8 @@ class GtkdocHtml {
     private $_base;
 
 
-    static private function _decomposeURL($url) {
+    private static function _decomposeURL($url)
+    {
         $components = array();
 
         $parsed = parse_url($url);
@@ -35,30 +37,35 @@ class GtkdocHtml {
                 }
             }
 
-            if (isset($fragment))
+            if (isset($fragment)) {
                 $components['fragment'] = $fragment;
+            }
 
-            if (isset($query))
+            if (isset($query)) {
                 $components['query'] = $query;
+            }
         }
 
         return $components;
     }
 
-    private function _mangleExternalUrl($url) {
+    private function _mangleExternalUrl($url)
+    {
         // A single preg_replace() call with arrays cannot be used
         // because the replacement must stop at the first match
         $count = 0;
         foreach ($this->_mangle_table as $pattern => $replacement) {
             $url = preg_replace($pattern, $replacement, $url, 1, $count);
-            if ($count > 0)
+            if ($count > 0) {
                 break;
+            }
         }
 
         return $url;
     }
 
-    private function _mangleURL($url) {
+    private function _mangleURL($url)
+    {
         // Merge $url with $this->_base, giving precedence to the former
         $parsed = self::_decomposeURL($url);
         extract($parsed);
@@ -66,20 +73,23 @@ class GtkdocHtml {
         $url  = @$this->_base['path'];
         $url .= (isset($file) && $file != '') ? $file : @$this->_base['file'];
 
-        if (isset($query))
+        if (isset($query)) {
             $url .= '?' . $query;
-        elseif (isset($this->_base['query']))
+        } elseif (isset($this->_base['query'])) {
             $url .= '?' . $this->_base['query'];
+        }
 
-        if (isset($fragment))
+        if (isset($fragment)) {
             $url .= '#' . $fragment;
-        elseif (isset($this->_base['fragment']))
+        } elseif (isset($this->_base['fragment'])) {
             $url .= '#' . $this->_base['fragment'];
+        }
 
         return $url;
     }
 
-    private function _urlMangler($url) {
+    private function _urlMangler($url)
+    {
         if (parse_url($url, PHP_URL_HOST)) {
             // When the $url contains the host component, it is
             // considered absolute: leave it as is
@@ -94,7 +104,8 @@ class GtkdocHtml {
         return $this->_mangleURL($url);
     }
 
-    private function _processDocument(DOMDocument $doc) {
+    private function _processDocument(DOMDocument $doc)
+    {
         $xpath = new DOMXPath($doc);
         $result = $doc->createElement('div');
         $result->setAttribute('class', 'gtkdoc');
@@ -110,22 +121,26 @@ class GtkdocHtml {
 
         // No valid elements are found: fallback to the whole content of body
         if (! $result->hasChildNodes()) {
-            foreach ($xpath->query('body/*') as $element)
+            foreach ($xpath->query('body/*') as $element) {
                 $result->appendChild($element);
+            }
         }
 
         // Remove invalid elements from the result: the helper
         // $elements array is used to avoid modifying the DOM
         // while iterating over it
         $elements = array();
-        foreach ($xpath->query('(.//div[@class="titlepage"])[1]|.//div[@class="refnamediv"]', $result) as $element)
+        foreach ($xpath->query('(.//div[@class="titlepage"])[1]|.//div[@class="refnamediv"]', $result) as $element) {
             $elements[] = $element;
-        foreach ($elements as $element)
+        }
+        foreach ($elements as $element) {
             $element->parentNode->removeChild($element);
+        }
 
         // Resolve href targets
-        foreach ($xpath->query('.//a/@href', $result) as $element)
+        foreach ($xpath->query('.//a/@href', $result) as $element) {
             $element->value = $this->_urlMangler($element->value);
+        }
 
         $this->_html = $doc->saveHTML($result);
     }
@@ -155,7 +170,8 @@ class GtkdocHtml {
      *
      * @param String $html A chunk of html (UTF-8 encoded).
      */
-    function __construct($html) {
+    public function __construct($html)
+    {
         $this->_raw_html = $html;
         $this->resetMangleRules();
         $this->_base = array();
@@ -170,10 +186,11 @@ class GtkdocHtml {
      *
      * @param Boolean $all If true remove also the default rules.
      */
-    public function resetMangleRules($all = false) {
-        if ($all)
+    public function resetMangleRules($all = false)
+    {
+        if ($all) {
             $this->_mangle_table = array();
-        else
+        } else {
             $this->_mangle_table = array(
                 // cairo
                 '|^.*/cairo/([^/]*)$|' => 'http://cairographics.org/manual/$1',
@@ -185,6 +202,7 @@ class GtkdocHtml {
                 // Try to resolve everything else to gnome.org
                 '|^.*/([^/]*)/([^/]*)$|' => 'http://developer.gnome.org/$1/stable/$2'
             );
+        }
     }
 
     /**
@@ -202,9 +220,11 @@ class GtkdocHtml {
      * The precedence is significative: the last rule added has
      * precedence over the other ones.
      */
-    public function addMangleRules($rules) {
-        if (! is_array($rules))
+    public function addMangleRules($rules)
+    {
+        if (! is_array($rules)) {
             return false;
+        }
 
         $this->_mangle_table = $rules + $this->_mangle_table;
         return true;
@@ -215,7 +235,8 @@ class GtkdocHtml {
      *
      * Gets the internal mangle table, including the default rules.
      */
-    public function getMangleRules() {
+    public function getMangleRules()
+    {
         return $this->_mangle_table;
     }
 
@@ -229,7 +250,8 @@ class GtkdocHtml {
      *
      * @param String $base_url The base url to prepend to local links.
      */
-    public function setBaseURL($base_url) {
+    public function setBaseURL($base_url)
+    {
         $this->_base = self::_decomposeURL($base_url);
     }
 
@@ -240,7 +262,8 @@ class GtkdocHtml {
      *
      * @return String The base url.
      */
-    public function getBaseURL() {
+    public function getBaseURL()
+    {
         return $this->_mangleURL('');
     }
 
@@ -253,10 +276,12 @@ class GtkdocHtml {
      * @param String $base_url The base url to prepend to local links.
      * @return boolean         true on success, false on errors.
      */
-    public function process($base_url = '') {
+    public function process($base_url = '')
+    {
         // Check if $this->_raw_html is valid
-        if (! is_string($this->_raw_html) || empty($this->_raw_html))
+        if (! is_string($this->_raw_html) || empty($this->_raw_html)) {
             return false;
+        }
 
         // Check silverstripe-autotoc for details on $prefix
         $prefix = "<?xml encoding=\"utf-8\" ?>\n";
@@ -264,8 +289,9 @@ class GtkdocHtml {
         // Parse the HTML into a DOMDocument tree
         $doc = new DOMDocument();
         $doc->strictErrorChecking = false;
-        if (! @$doc->loadHTML($prefix . $this->_raw_html))
+        if (! @$doc->loadHTML($prefix . $this->_raw_html)) {
             return false;
+        }
 
         // Process the DOMDocument
         $this->Content = $this->_processDocument($doc);
@@ -281,7 +307,8 @@ class GtkdocHtml {
      *
      * @return String A valid (or empty) HTML chunk is always returned.
      */
-    public function getHtml() {
+    public function getHtml()
+    {
         return is_string($this->_html) ? $this->_html : '';
     }
 
@@ -294,7 +321,8 @@ class GtkdocHtml {
      *
      * @return String The description for this section.
      */
-    public function getDescription() {
+    public function getDescription()
+    {
         return is_string($this->_description) ? $this->_description : '';
     }
 }
