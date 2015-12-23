@@ -1,7 +1,5 @@
 <?php
 
-require_once '../code/Devhelp.php';
-
 class DevhelpTest extends PHPUnit_Framework_TestCase
 {
 
@@ -25,7 +23,7 @@ class DevhelpTest extends PHPUnit_Framework_TestCase
 
     public function testTOC()
     {
-        $devhelp = new Devhelp(@file_get_contents('adg.devhelp2'));
+        $devhelp = new Devhelp(file_get_contents(__DIR__ . '/adg.devhelp2'));
         $this->assertEquals($devhelp->getTOC(), array());
         $this->assertEmpty($devhelp->getTOC(), array());
         $this->assertTrue($devhelp->process());
