@@ -1,5 +1,7 @@
 silverstripe-gtkdoc
 ===================
+[![Build Status](https://travis-ci.org/ntd/silverstripe-gtkdoc.svg?branch=master)](https://travis-ci.org/ntd/silverstripe-gtkdoc)
+[![Latest Stable Version](https://poser.pugx.org/entidi/silverstripe-gtkdoc/v/stable)](https://packagist.org/packages/entidi/silverstripe-gtkdoc)
 
 The [silverstripe-gtkdoc](http://gtkdoc.entidi.com/) module implements
 a new page type (*Gtkdoc*) that allows to import into the pages tree of
