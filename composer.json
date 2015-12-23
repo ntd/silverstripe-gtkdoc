@@ -1,9 +1,9 @@
 {
     "name": "entidi/silverstripe-gtkdoc",
-    "description": "A module that imports a gtk-doc manual under a silverstripe page",
+    "description": "Import a gtk-doc manual under the SilverStripe page tree",
     "type": "silverstripe-module",
     "homepage": "http://gtkdoc.entidi.com/",
-    "keywords": ["silverstripe", "gtkdoc", "dataobject"],
+    "keywords": ["silverstripe", "gtk", "gtkdoc", "documentation", "manual"],
     "license": "BSD-2-Clause",
     "authors": [
         {
@@ -18,7 +18,10 @@
         "source": "http://dev.entidi.com/p/silverstripe-gtkdoc/source/tree/master/"
     },
     "require": {
-        "silverstripe/framework": "~3.0"
+        "silverstripe/cms": "~3.0"
+    },
+    "require-dev": {
+        "phpunit/PHPUnit": "~3.7"
     },
     "extra": {
         "installer-name": "gtkdoc",
