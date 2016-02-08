@@ -1,7 +1,6 @@
 silverstripe-gtkdoc
 ===================
 [![Build Status](https://travis-ci.org/ntd/silverstripe-gtkdoc.svg?branch=master)](https://travis-ci.org/ntd/silverstripe-gtkdoc)
-[![Code Quality](https://scrutinizer-ci.com/g/ntd/silverstripe-autotoc/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/ntd/silverstripe-autotoc/?branch=master)
 [![Latest Stable Version](https://poser.pugx.org/entidi/silverstripe-gtkdoc/v/stable)](https://packagist.org/packages/entidi/silverstripe-gtkdoc)
 
 The [silverstripe-gtkdoc](http://gtkdoc.entidi.com/) module implements
